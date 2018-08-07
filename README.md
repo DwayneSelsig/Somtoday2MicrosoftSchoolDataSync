@@ -10,14 +10,16 @@ Tip: Maak een scheduled task aan. Het synchroniseren van leerlingegevens is alle
 
 
 ## Configuratiestappen
-* Bewerk Somtoday2MicrosoftSchoolDataSync.exe.config
+Bewerk Somtoday2MicrosoftSchoolDataSync.exe.config
+
+### endpoint address
 Wijzig het endpoint address naar de URL van de Somtoday UmService van jouw school.
 
 ### BooleanFilterBylocation
 
 Filter toepassen of alle vestigingen opvragen.
-* waarde: False | alle vestigingen opvragen
-* waarde: True | alleen onderstaande vestigingen opvragen
+* False: alle vestigingen opvragen
+* True: alleen onderstaande vestigingen opvragen
 
 ### IncludedLocationCode
 
@@ -53,6 +55,7 @@ Maak voor elke vestiging een eigen directory aan.
 
 
 
+## Volgende stappen
 
 Synchroniseer de CSV-bestanden m.b.v. de School Data Sync Toolkit.
 https://docs.microsoft.com/en-us/schooldatasync/install-the-school-data-sync-toolkit
