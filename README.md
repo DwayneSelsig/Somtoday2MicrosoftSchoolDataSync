@@ -13,36 +13,41 @@ Tip: Maak een scheduled task aan. Het synchroniseren van leerlingegevens is alle
 * Bewerk Somtoday2MicrosoftSchoolDataSync.exe.config
 Wijzig het endpoint address naar de URL van de Somtoday UmService van jouw school.
 
-**BooleanFilterBylocation**
+### BooleanFilterBylocation
 
 Filter toepassen of alle vestigingen opvragen.
 * waarde: False | alle vestigingen opvragen
 * waarde: True | alleen onderstaande vestigingen opvragen
 
-**IncludedLocationCode**
+### IncludedLocationCode
 
 Indien BooleanFilterBylocation op True staat, kan je hier de afkortingen van de vestigingen opgeven. Puntkomma gescheiden.
 * Voorbeeld: AB;cd;Ef
 
-**umServiceBrinNr**
+
+### umServiceBrinNr
 
 Het BRINnummer van de hoofdvestiging
 * Voorbeeld: 01AB
 
-**umServiceUsername**
+
+### umServiceUsername
 
 De username van het UmService-account (TIP: maak hiervoor een apart account aan)
 
-**umServicePassword**
+
+### umServicePassword
 
 Het wachtwoord van de UmService-account
 
-**OutputDirectory**
+
+### OutputDirectory
 
 De CSV bestanden worden opgeslagen in deze directory.
 * Voorbeeld: C:\SomSync\CSV
 
-**SeperateOutputDirectoryForEachLocation**
+
+### SeperateOutputDirectoryForEachLocation
 
 Maak voor elke vestiging een eigen directory aan.
 
