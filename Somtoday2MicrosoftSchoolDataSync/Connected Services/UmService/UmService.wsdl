@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://services.mijnsom.nl" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="UmService" targetNamespace="http://services.mijnsom.nl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://services.mijnsom.nl" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getDataDebiteuren" type="tns:getDataDebiteuren" />
+      <xs:element name="getDataDebiteurenResponse" type="tns:getDataDebiteurenResponse" />
+      <xs:element name="getDataLeerlingen" type="tns:getDataLeerlingen" />
+      <xs:element name="getDataLeerlingenResponse" type="tns:getDataLeerlingenResponse" />
+      <xs:element name="getDataMedewerkers" type="tns:getDataMedewerkers" />
+      <xs:element name="getDataMedewerkersResponse" type="tns:getDataMedewerkersResponse" />
+      <xs:element name="getDataVerzorgers" type="tns:getDataVerzorgers" />
+      <xs:element name="getDataVerzorgersResponse" type="tns:getDataVerzorgersResponse" />
+      <xs:element name="getDataVrijevelden" type="tns:getDataVrijevelden" />
+      <xs:element name="getDataVrijeveldenResponse" type="tns:getDataVrijeveldenResponse" />
+      <xs:element name="getInrichtingLesgroepen" type="tns:getInrichtingLesgroepen" />
+      <xs:element name="getInrichtingLesgroepenResponse" type="tns:getInrichtingLesgroepenResponse" />
+      <xs:element name="getInrichtingOpleidingVakken" type="tns:getInrichtingOpleidingVakken" />
+      <xs:element name="getInrichtingOpleidingVakkenResponse" type="tns:getInrichtingOpleidingVakkenResponse" />
+      <xs:element name="getInrichtingOpleidingen" type="tns:getInrichtingOpleidingen" />
+      <xs:element name="getInrichtingOpleidingenResponse" type="tns:getInrichtingOpleidingenResponse" />
+      <xs:element name="getInrichtingStamgroepen" type="tns:getInrichtingStamgroepen" />
+      <xs:element name="getInrichtingStamgroepenResponse" type="tns:getInrichtingStamgroepenResponse" />
+      <xs:element name="getInrichtingVakken" type="tns:getInrichtingVakken" />
+      <xs:element name="getInrichtingVakkenResponse" type="tns:getInrichtingVakkenResponse" />
+      <xs:element name="getInrichtingVestigingen" type="tns:getInrichtingVestigingen" />
+      <xs:element name="getInrichtingVestigingenResponse" type="tns:getInrichtingVestigingenResponse" />
+      <xs:element name="writeDataLeerlingen" type="tns:writeDataLeerlingen" />
+      <xs:element name="writeDataLeerlingenResponse" type="tns:writeDataLeerlingenResponse" />
+      <xs:element name="writeDataMedewerkers" type="tns:writeDataMedewerkers" />
+      <xs:element name="writeDataMedewerkersResponse" type="tns:writeDataMedewerkersResponse" />
+      <xs:element name="writeDataVerzorgers" type="tns:writeDataVerzorgers" />
+      <xs:element name="writeDataVerzorgersResponse" type="tns:writeDataVerzorgersResponse" />
+      <xs:complexType name="getInrichtingLesgroepen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element name="vestigingID" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingLesgroepenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:wisLesgroep" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisLesgroep">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="docenten" nillable="true" type="tns:wisDocent" />
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="naam" type="xs:string" />
+          <xs:element minOccurs="0" name="vak" type="tns:wisVak" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisDocent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="docentID" type="xs:long" />
+          <xs:element minOccurs="0" name="docentUUID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisVak">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="afkorting" type="xs:string" />
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="naam" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingStamgroepen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element name="vestigingID" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingStamgroepenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:wisStamgroep" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisStamgroep">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="leerlingen" nillable="true" type="tns:wisLeerling" />
+          <xs:element minOccurs="0" name="naam" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisLeerling">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="achternaam" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="adressen" nillable="true" type="tns:wisAdres" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="foto" type="xs:base64Binary" />
+          <xs:element name="fotoIdentifier" type="xs:int" />
+          <xs:element minOccurs="0" name="geboortedatum" type="xs:string" />
+          <xs:element minOccurs="0" name="geslacht" type="xs:string" />
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="kluisjes" nillable="true" type="tns:wisKluis" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="mentoren" nillable="true" type="tns:wisMedewerker" />
+          <xs:element name="nummer" type="xs:long" />
+          <xs:element minOccurs="0" name="opleiding" type="tns:wisOpleiding" />
+          <xs:element minOccurs="0" name="plaatsingStatus" type="xs:string" />
+          <xs:element minOccurs="0" name="stamgroep" type="tns:wisStamgroep" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="telefoonnummers" nillable="true" type="tns:wisNummer" />
+          <xs:element minOccurs="0" name="UUID" type="xs:string" />
+          <xs:element minOccurs="0" name="vestiging" type="tns:wisVestiging" />
+          <xs:element minOccurs="0" name="voornaam" type="xs:string" />
+          <xs:element minOccurs="0" name="voorvoegsel" type="xs:string" />
+          <xs:element name="wenstContactViaEmail" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisAdres">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="nummer" type="xs:string" />
+          <xs:element minOccurs="0" name="plaats" type="xs:string" />
+          <xs:element minOccurs="0" name="postcode" type="xs:string" />
+          <xs:element minOccurs="0" name="straat" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisKluis">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="kluisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="sleutelnummer" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisMedewerker">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="achternaam" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="adressen" nillable="true" type="tns:wisAdres" />
+          <xs:element minOccurs="0" name="afkorting" type="xs:string" />
+          <xs:element name="begeleider" type="xs:boolean" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="foto" type="xs:base64Binary" />
+          <xs:element name="fotoIdentifier" type="xs:int" />
+          <xs:element minOccurs="0" name="geboortedatum" type="xs:string" />
+          <xs:element minOccurs="0" name="geslacht" type="xs:string" />
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="meisjesnaam" type="xs:string" />
+          <xs:element name="nummer" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="telefoonnummers" nillable="true" type="tns:wisNummer" />
+          <xs:element minOccurs="0" name="typeBegeleider" type="xs:string" />
+          <xs:element minOccurs="0" name="UUID" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="vakken" nillable="true" type="tns:wisVak" />
+          <xs:element minOccurs="0" name="voorletters" type="xs:string" />
+          <xs:element minOccurs="0" name="voornaam" type="xs:string" />
+          <xs:element minOccurs="0" name="voorvoegsel" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisNummer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="nummer" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element name="wenstContactViaSms" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisOpleiding">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="afkorting" type="xs:string" />
+          <xs:element minOccurs="0" name="code" type="xs:string" />
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="leerjaar" type="xs:string" />
+          <xs:element minOccurs="0" name="onderwijsType" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisVestiging">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="afkorting" type="xs:string" />
+          <xs:element minOccurs="0" name="correspondentieAdres" type="tns:wisAdres" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="fax" type="xs:string" />
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="naam" type="xs:string" />
+          <xs:element minOccurs="0" name="telefoon" type="xs:string" />
+          <xs:element minOccurs="0" name="vestigingAdres" type="tns:wisAdres" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataLeerlingen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element minOccurs="0" name="vestigingAfkorting" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="leerlingnummer" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataLeerlingenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:webserviceUmObject" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="webserviceUmObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="leerlingAchternaam" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingActief" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingAdresHuisTelefoonNummer" type="xs:string" />
+          <xs:element name="leerlingAdresHuisTelefoonNummerGeheim" type="xs:boolean" />
+          <xs:element minOccurs="0" name="leerlingAdresHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingAdresPlaats" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingAdresPostcode" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingAdresStraat" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingAdresStraatHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingAdresToevoeging" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingBSN" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingBekostigingBRINNaam" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingBekostigingBRINVolgnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingExamennummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingExamenvoorvoegsel" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingExternExportID" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingGeboortedatum" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingGeslacht" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingKluisAfname" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingLeerjaar" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingLesgroepen" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingLesgroepenVakken" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingLgfIndicaties" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingMentoren" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingMobielNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingNummer" type="xs:long" />
+          <xs:element minOccurs="0" name="leerlingOnderwijsnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingOpleidingCode" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingOpleidingVestiging" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingProfielSector" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingRoepnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingStamgroep" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingToegangspasNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingUUID" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingUmVrijeVelden" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingUsername" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingVakken" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingVestigingAfkorting" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingVestigingNaam" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingVestigingVolgnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingVoorletters" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingVoorvoegsel" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingWachtwoord" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAchternaam" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerActiefOmschrijving" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAdresHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAdresPlaats" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAdresPostcode" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAdresStraat" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAdresStraatHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAdresTelefoonNummer" type="xs:string" />
+          <xs:element name="medewerkerAdresTelefoonNummerGeheim" type="xs:boolean" />
+          <xs:element minOccurs="0" name="medewerkerAdresToevoeging" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerAfkorting" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerBSN" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerDefaultVestiging" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerDefaultVestigingNaam" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerFunctie" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerGeboortedatum" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerGeslacht" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerInternNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerLesgroepenVakken" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerMeisjesnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerMobielNummer" type="xs:string" />
+          <xs:element name="medewerkerMobielNummerGeheim" type="xs:boolean" />
+          <xs:element minOccurs="0" name="medewerkerNummer" type="xs:string" />
+          <xs:element name="medewerkerOndersteunend" type="xs:boolean" />
+          <xs:element name="medewerkerOnderwijzend" type="xs:boolean" />
+          <xs:element minOccurs="0" name="medewerkerOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerRoepnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerRollen" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerToegangspasNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerUUID" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerUmVrijeVelden" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerUsername" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerVestigingen" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerVoorletters" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerVoorvoegsel" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerWachtwoord" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAchternaam" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAdresHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAdresPlaats" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAdresPostcode" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAdresStraat" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAdresStraatHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerAdresTelefoonNummer" type="xs:string" />
+          <xs:element name="verzorgerAdresTelefoonNummerGeheim" type="xs:boolean" />
+          <xs:element minOccurs="0" name="verzorgerAdresToevoeging" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerBICNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerBSN" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerExternExportID" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerGeslacht" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerIBANNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerID" type="xs:long" />
+          <xs:element minOccurs="0" name="verzorgerLeerlingRelaties" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerMobielNummer" type="xs:string" />
+          <xs:element name="verzorgerMobielNummerGeheim" type="xs:boolean" />
+          <xs:element minOccurs="0" name="verzorgerMobielWerkNummer" type="xs:string" />
+          <xs:element name="verzorgerMobielWerkNummerGeheim" type="xs:boolean" />
+          <xs:element minOccurs="0" name="verzorgerOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerTenaamstelling" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerUUID" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerUmVrijeVelden" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerUsername" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerVoorletters" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerVoorvoegsel" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerWachtwoord" type="xs:string" />
+          <xs:element minOccurs="0" name="wuoSoort" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataDebiteuren">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element minOccurs="0" name="vestigingAfkorting" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataDebiteurenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:webserviceUmDebiteurObject" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="webserviceUmDebiteurObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="achternaam" type="xs:string" />
+          <xs:element minOccurs="0" name="alternatiefHuisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="alternatiefPlaatsnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="alternatiefPostcode" type="xs:string" />
+          <xs:element minOccurs="0" name="alternatiefStraatnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="bicNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="defaultGrootboekRekening" type="xs:string" />
+          <xs:element minOccurs="0" name="emailadres" type="xs:string" />
+          <xs:element minOccurs="0" name="externDebiteurnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="geslacht" type="xs:string" />
+          <xs:element minOccurs="0" name="huisnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="ibanNummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="naamLeerling" type="xs:string" />
+          <xs:element minOccurs="0" name="plaatsnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="postcode" type="xs:string" />
+          <xs:element minOccurs="0" name="projectcode" type="xs:string" />
+          <xs:element minOccurs="0" name="straatnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="telefoonnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="tenaamstelling" type="xs:string" />
+          <xs:element minOccurs="0" name="tussenvoegsel" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerId" type="xs:string" />
+          <xs:element minOccurs="0" name="voorletters" type="xs:string" />
+          <xs:element minOccurs="0" name="voornaam" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingVestigingen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingVestigingenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:wisVestiging" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="writeDataMedewerkers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="medewerkers" type="tns:medewerkerUmWrite" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="medewerkerUmWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="medewerkerEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerGebruikersnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerNummer" type="xs:long" />
+          <xs:element minOccurs="0" name="medewerkerOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerWachtwoord" type="xs:string" />
+          <xs:element name="medewerkerWachtwoordEncrypted" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="writeDataMedewerkersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingOpleidingVakken">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element name="opleidingID" type="xs:long" />
+          <xs:element name="leerjaar" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingOpleidingVakkenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:wisVakpositie" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wisVakpositie">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="naam" type="xs:string" />
+          <xs:element minOccurs="0" name="soortVakpositie" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="vakken" nillable="true" type="tns:wisVak" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataMedewerkers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element minOccurs="0" name="vestigingAfkorting" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataMedewerkersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:webserviceUmObject" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataVrijevelden">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataVrijeveldenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:webserviceUmObject" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="writeDataVerzorgers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="verzorgers" type="tns:verzorgerUmWrite" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="verzorgerUmWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="verzorgerEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerGebruikersnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerID" type="xs:long" />
+          <xs:element minOccurs="0" name="verzorgerOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerWachtwoord" type="xs:string" />
+          <xs:element name="verzorgerWachtwoordEncrypted" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="writeDataVerzorgersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingOpleidingen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element name="vestigingID" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingOpleidingenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:wisOpleiding" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingVakken">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element name="vestigingID" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getInrichtingVakkenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:wisVak" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataVerzorgers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="schooljaar" type="xs:string" />
+          <xs:element minOccurs="0" name="vestigingAfkorting" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDataVerzorgersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:webserviceUmObject" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="writeDataLeerlingen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="brinNr" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="leerlingen" type="tns:leerlingUmWrite" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="leerlingUmWrite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="leerlingEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingGebruikersnaam" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingNummer" type="xs:long" />
+          <xs:element minOccurs="0" name="leerlingOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingWachtwoord" type="xs:string" />
+          <xs:element name="leerlingWachtwoordEncrypted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="wenstContactViaEmail" type="xs:boolean" />
+          <xs:element minOccurs="0" name="wenstContactViaSms" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="writeDataLeerlingenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getInrichtingStamgroepenResponse">
+    <wsdl:part name="parameters" element="tns:getInrichtingStamgroepenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingStamgroepen">
+    <wsdl:part name="parameters" element="tns:getInrichtingStamgroepen" />
+  </wsdl:message>
+  <wsdl:message name="writeDataMedewerkersResponse">
+    <wsdl:part name="parameters" element="tns:writeDataMedewerkersResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeDataVerzorgersResponse">
+    <wsdl:part name="parameters" element="tns:writeDataVerzorgersResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataDebiteuren">
+    <wsdl:part name="parameters" element="tns:getDataDebiteuren" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingVestigingenResponse">
+    <wsdl:part name="parameters" element="tns:getInrichtingVestigingenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataMedewerkersResponse">
+    <wsdl:part name="parameters" element="tns:getDataMedewerkersResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingOpleidingVakken">
+    <wsdl:part name="parameters" element="tns:getInrichtingOpleidingVakken" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingVakkenResponse">
+    <wsdl:part name="parameters" element="tns:getInrichtingVakkenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingOpleidingVakkenResponse">
+    <wsdl:part name="parameters" element="tns:getInrichtingOpleidingVakkenResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeDataVerzorgers">
+    <wsdl:part name="parameters" element="tns:writeDataVerzorgers" />
+  </wsdl:message>
+  <wsdl:message name="getDataDebiteurenResponse">
+    <wsdl:part name="parameters" element="tns:getDataDebiteurenResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeDataLeerlingenResponse">
+    <wsdl:part name="parameters" element="tns:writeDataLeerlingenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingLesgroepen">
+    <wsdl:part name="parameters" element="tns:getInrichtingLesgroepen" />
+  </wsdl:message>
+  <wsdl:message name="getDataVerzorgersResponse">
+    <wsdl:part name="parameters" element="tns:getDataVerzorgersResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataVrijeveldenResponse">
+    <wsdl:part name="parameters" element="tns:getDataVrijeveldenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataLeerlingen">
+    <wsdl:part name="parameters" element="tns:getDataLeerlingen" />
+  </wsdl:message>
+  <wsdl:message name="getDataLeerlingenResponse">
+    <wsdl:part name="parameters" element="tns:getDataLeerlingenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingVestigingen">
+    <wsdl:part name="parameters" element="tns:getInrichtingVestigingen" />
+  </wsdl:message>
+  <wsdl:message name="writeDataMedewerkers">
+    <wsdl:part name="parameters" element="tns:writeDataMedewerkers" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingLesgroepenResponse">
+    <wsdl:part name="parameters" element="tns:getInrichtingLesgroepenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataMedewerkers">
+    <wsdl:part name="parameters" element="tns:getDataMedewerkers" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingOpleidingenResponse">
+    <wsdl:part name="parameters" element="tns:getInrichtingOpleidingenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDataVrijevelden">
+    <wsdl:part name="parameters" element="tns:getDataVrijevelden" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingOpleidingen">
+    <wsdl:part name="parameters" element="tns:getInrichtingOpleidingen" />
+  </wsdl:message>
+  <wsdl:message name="getInrichtingVakken">
+    <wsdl:part name="parameters" element="tns:getInrichtingVakken" />
+  </wsdl:message>
+  <wsdl:message name="getDataVerzorgers">
+    <wsdl:part name="parameters" element="tns:getDataVerzorgers" />
+  </wsdl:message>
+  <wsdl:message name="writeDataLeerlingen">
+    <wsdl:part name="parameters" element="tns:writeDataLeerlingen" />
+  </wsdl:message>
+  <wsdl:portType name="UmService">
+    <wsdl:operation name="getInrichtingLesgroepen">
+      <wsdl:input name="getInrichtingLesgroepen" message="tns:getInrichtingLesgroepen" />
+      <wsdl:output name="getInrichtingLesgroepenResponse" message="tns:getInrichtingLesgroepenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingStamgroepen">
+      <wsdl:input name="getInrichtingStamgroepen" message="tns:getInrichtingStamgroepen" />
+      <wsdl:output name="getInrichtingStamgroepenResponse" message="tns:getInrichtingStamgroepenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDataLeerlingen">
+      <wsdl:input name="getDataLeerlingen" message="tns:getDataLeerlingen" />
+      <wsdl:output name="getDataLeerlingenResponse" message="tns:getDataLeerlingenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDataDebiteuren">
+      <wsdl:input name="getDataDebiteuren" message="tns:getDataDebiteuren" />
+      <wsdl:output name="getDataDebiteurenResponse" message="tns:getDataDebiteurenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingVestigingen">
+      <wsdl:input name="getInrichtingVestigingen" message="tns:getInrichtingVestigingen" />
+      <wsdl:output name="getInrichtingVestigingenResponse" message="tns:getInrichtingVestigingenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="writeDataMedewerkers">
+      <wsdl:input name="writeDataMedewerkers" message="tns:writeDataMedewerkers" />
+      <wsdl:output name="writeDataMedewerkersResponse" message="tns:writeDataMedewerkersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingOpleidingVakken">
+      <wsdl:input name="getInrichtingOpleidingVakken" message="tns:getInrichtingOpleidingVakken" />
+      <wsdl:output name="getInrichtingOpleidingVakkenResponse" message="tns:getInrichtingOpleidingVakkenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDataMedewerkers">
+      <wsdl:input name="getDataMedewerkers" message="tns:getDataMedewerkers" />
+      <wsdl:output name="getDataMedewerkersResponse" message="tns:getDataMedewerkersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDataVrijevelden">
+      <wsdl:input name="getDataVrijevelden" message="tns:getDataVrijevelden" />
+      <wsdl:output name="getDataVrijeveldenResponse" message="tns:getDataVrijeveldenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="writeDataVerzorgers">
+      <wsdl:input name="writeDataVerzorgers" message="tns:writeDataVerzorgers" />
+      <wsdl:output name="writeDataVerzorgersResponse" message="tns:writeDataVerzorgersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingOpleidingen">
+      <wsdl:input name="getInrichtingOpleidingen" message="tns:getInrichtingOpleidingen" />
+      <wsdl:output name="getInrichtingOpleidingenResponse" message="tns:getInrichtingOpleidingenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingVakken">
+      <wsdl:input name="getInrichtingVakken" message="tns:getInrichtingVakken" />
+      <wsdl:output name="getInrichtingVakkenResponse" message="tns:getInrichtingVakkenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDataVerzorgers">
+      <wsdl:input name="getDataVerzorgers" message="tns:getDataVerzorgers" />
+      <wsdl:output name="getDataVerzorgersResponse" message="tns:getDataVerzorgersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="writeDataLeerlingen">
+      <wsdl:input name="writeDataLeerlingen" message="tns:writeDataLeerlingen" />
+      <wsdl:output name="writeDataLeerlingenResponse" message="tns:writeDataLeerlingenResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UmServiceSoapBinding" type="tns:UmService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getInrichtingLesgroepen">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getInrichtingLesgroepen">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInrichtingLesgroepenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingStamgroepen">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getInrichtingStamgroepen">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInrichtingStamgroepenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataLeerlingen">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDataLeerlingen">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDataLeerlingenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataDebiteuren">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDataDebiteuren">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDataDebiteurenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingVestigingen">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getInrichtingVestigingen">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInrichtingVestigingenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeDataMedewerkers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="writeDataMedewerkers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="writeDataMedewerkersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingOpleidingVakken">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getInrichtingOpleidingVakken">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInrichtingOpleidingVakkenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataMedewerkers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDataMedewerkers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDataMedewerkersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataVrijevelden">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDataVrijevelden">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDataVrijeveldenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeDataVerzorgers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="writeDataVerzorgers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="writeDataVerzorgersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingOpleidingen">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getInrichtingOpleidingen">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInrichtingOpleidingenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInrichtingVakken">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getInrichtingVakken">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInrichtingVakkenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataVerzorgers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDataVerzorgers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDataVerzorgersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeDataLeerlingen">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="writeDataLeerlingen">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="writeDataLeerlingenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UmService">
+    <wsdl:port name="umService" binding="tns:UmServiceSoapBinding">
+      <soap:address location="https://somtodayurl-oop.somtoday.nl/services/umService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Somtoday2MicrosoftSchoolDataSync", "Somtoday2MicrosoftSchoolDataSync\Somtoday2MicrosoftSchoolDataSync.csproj", "{3394A838-8582-4D64-B390-6BE7B2F2F44D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3394A838-8582-4D64-B390-6BE7B2F2F44D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3394A838-8582-4D64-B390-6BE7B2F2F44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3394A838-8582-4D64-B390-6BE7B2F2F44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3394A838-8582-4D64-B390-6BE7B2F2F44D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25BF68FE-34C2-49B1-B36A-24B191308313}
+	EndGlobalSection
+EndGlobal
