@@ -4,13 +4,15 @@ Create Microsoft School Data Sync CSV-files using the Somtoday webservices.
 
 De CSV bestanden zijn nodig, omdat een directe verbinding niet mogelijk is. Somtoday biedt **geen** ondersteuning voor de OneRoster standaard: https://www.imsglobal.org/oneroster-v11-final-specification. Zodra zij dat wel doen, is deze applicatie overbodig.
 
-[Download de installatie](setup.exe)
+## Installatie
+[Download de installatie](setup.exe) en volg de wizard.
 
 Tip: Maak een scheduled task aan. Het synchroniseren van leerlingegevens is alleen ’s nachts toegestaan vanuit Somtoday.
 
 
 ## Functionaliteiten
 
+* Sla de status op in de Windows Event Viewer.
 * De lesgroepen van het huidige schooljaar worden opgevraagd.
 * Lesgroepen zonder docent worden **niet** opgeslagen.
 * Lesgroepen zonder leerling worden **niet** opgeslagen.
