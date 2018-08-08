@@ -168,17 +168,20 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             {
                 List<UmService.webserviceUmObject> leerlingenActief = userLesgroep.Users.Where(d => d.leerlingActief.ToLower() == "actief").Distinct().ToList();
 
-                foreach (var leerling in leerlingenActief)
+                foreach (var student in leerlingenActief)
                 {
-                    students.Add(new Student
+                    if (!string.IsNullOrEmpty(student.leerlingUsername))
                     {
-                        //Firstname = studentCsv.Firstname,
-                        //Lastname = studentCsv.Lastname,
-                        SISid = leerling.leerlingNummer.ToString(),
-                        SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
-                        Username = leerling.leerlingNummer.ToString(),
-                        //Password = "Welkom" + DateTime.Now.Year
-                    });
+                        students.Add(new Student
+                        {
+                            //Firstname = studentCsv.Firstname,
+                            //Lastname = studentCsv.Lastname,
+                            SISid = student.leerlingNummer.ToString(),
+                            SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
+                            Username = student.leerlingNummer.ToString(),
+                            //Password = "Welkom" + DateTime.Now.Year
+                        });
+                    }
                 }
             }
             students = students.GroupBy(o => new { o.Firstname, o.Lastname, o.Password, o.SISid, o.SISSchoolid, o.Username }).Select(o => o.FirstOrDefault()).ToList();
@@ -256,11 +259,14 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                 var huidigeLeerlingen = leerlingLesgroepen.SelectMany(v => v.Users.Where(l => l.leerlingLesgroepen.Split(',').Any(lg => lg == sec.Name) && v.VestigingLesgroep.Vestiging.id.ToString() == sec.SISSchoolid)).ToList();
                 foreach (var student in huidigeLeerlingen)
                 {
-                    _studentEnrollments.Add(new StudentEnrollment
+                    if (!string.IsNullOrEmpty(student.leerlingUsername))
                     {
-                        SISSectionid = sec.SISid,
-                        SISStudentid = student.leerlingUsername
-                    });
+                        _studentEnrollments.Add(new StudentEnrollment
+                        {
+                            SISSectionid = sec.SISid,
+                            SISStudentid = student.leerlingNummer.ToString()
+                        });
+                    }
                 }
             }
             Console.Write(". ");

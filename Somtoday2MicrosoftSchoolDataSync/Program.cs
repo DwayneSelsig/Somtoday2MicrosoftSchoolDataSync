@@ -51,7 +51,7 @@ namespace Somtoday2MicrosoftSchoolDataSync
                 case CtrlType.CTRL_SHUTDOWN_EVENT:
                 case CtrlType.CTRL_CLOSE_EVENT:
                 default:
-                    eh.WriteLog("Applicatie afgebroken", EventLogEntryType.Warning, 666);
+                    eh.WriteLog("Applicatie afgebroken", EventLogEntryType.Warning, 400);
                     return false;
             }
         }
