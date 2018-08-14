@@ -77,7 +77,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                             string sectieNaam = GetFilteredName(lesgroep.naam);
 
                             var leerlingen = leerlingLesgroepen.Where(vl => vl.VestigingLesgroep == vestigingLesgroep)
-                                .Select(l => l.Users.Where(o => o.leerlingLesgroepen.Split(',').Any(lg => lg == lesgroep.naam)))
+                                .Select(l => l.Users.Where(o => !string.IsNullOrEmpty(o.leerlingUsername) && o.leerlingActief.ToLower() == "actief" && o.leerlingLesgroepen.Split(',').Any(lg => lg == lesgroep.naam)))
                                 .SelectMany(l => l.OrderByDescending(o => o.leerlingLeerjaar)).ToList();
 
                             if (leerlingen.Count > 0)
@@ -166,22 +166,19 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
             foreach (UserLesgroepModel userLesgroep in leerlingLesgroepen)
             {
-                List<UmService.webserviceUmObject> leerlingenActief = userLesgroep.Users.Where(d => d.leerlingActief.ToLower() == "actief").Distinct().ToList();
+                List<UmService.webserviceUmObject> leerlingenActief = userLesgroep.Users.Where(d => d.leerlingActief.ToLower() == "actief" && !string.IsNullOrEmpty(d.leerlingUsername)).Distinct().ToList();
 
                 foreach (var student in leerlingenActief)
                 {
-                    if (!string.IsNullOrEmpty(student.leerlingUsername))
+                    students.Add(new Student
                     {
-                        students.Add(new Student
-                        {
-                            //Firstname = studentCsv.Firstname,
-                            //Lastname = studentCsv.Lastname,
-                            SISid = student.leerlingNummer.ToString(),
-                            SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
-                            Username = student.leerlingNummer.ToString(),
-                            //Password = "Welkom" + DateTime.Now.Year
-                        });
-                    }
+                        //Firstname = studentCsv.Firstname,
+                        //Lastname = studentCsv.Lastname,
+                        SISid = student.leerlingNummer.ToString(),
+                        SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
+                        Username = student.leerlingNummer.ToString(),
+                        //Password = "Welkom" + DateTime.Now.Year
+                    });
                 }
             }
             students = students.GroupBy(o => new { o.Firstname, o.Lastname, o.Password, o.SISid, o.SISSchoolid, o.Username }).Select(o => o.FirstOrDefault()).ToList();
@@ -217,7 +214,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                             if (docent != null)
                             {
                                 var leerlingen = leerlingLesgroepen.Where(vl => vl.VestigingLesgroep.Lesgroepen.Any(l => l == lesgroep))
-                                    .Select(l => l.Users.Where(o => o.leerlingLesgroepen.Split(',').Any(lg => lg == lesgroep.naam)))
+                                    .Select(l => l.Users.Where(o => !string.IsNullOrEmpty(o.leerlingUsername) && o.leerlingActief.ToLower() == "actief" && o.leerlingLesgroepen.Split(',').Any(lg => lg == lesgroep.naam)))
                                     .SelectMany(l => l.OrderByDescending(o => o.leerlingLeerjaar)).ToList();
                                 if (leerlingen.Count > 0)
                                 {
@@ -256,7 +253,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                     i = 0;
                 }
 
-                var huidigeLeerlingen = leerlingLesgroepen.SelectMany(v => v.Users.Where(l => l.leerlingLesgroepen.Split(',').Any(lg => lg == sec.Name) && v.VestigingLesgroep.Vestiging.id.ToString() == sec.SISSchoolid)).ToList();
+                var huidigeLeerlingen = leerlingLesgroepen.SelectMany(v => v.Users.Where(l => !string.IsNullOrEmpty(l.leerlingUsername) && l.leerlingActief.ToLower() == "actief" && l.leerlingLesgroepen.Split(',').Any(lg => lg == sec.Name) && v.VestigingLesgroep.Vestiging.id.ToString() == sec.SISSchoolid)).ToList();
                 foreach (var student in huidigeLeerlingen)
                 {
                     if (!string.IsNullOrEmpty(student.leerlingUsername))
