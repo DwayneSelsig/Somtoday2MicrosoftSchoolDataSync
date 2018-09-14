@@ -253,7 +253,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                     i = 0;
                 }
 
-                var huidigeLeerlingen = leerlingLesgroepen.SelectMany(v => v.Users.Where(l => !string.IsNullOrEmpty(l.leerlingUsername) && l.leerlingActief.ToLower() == "actief" && l.leerlingLesgroepen.Split(',').Any(lg => lg == sec.Name) && v.VestigingLesgroep.Vestiging.id.ToString() == sec.SISSchoolid)).ToList();
+                var huidigeLeerlingen = leerlingLesgroepen.SelectMany(v => v.Users.Where(l => !string.IsNullOrEmpty(l.leerlingUsername) && l.leerlingActief.ToLower() == "actief" && l.leerlingLesgroepen.Split(',').Any(lg => GetFilteredName(lg) == sec.Name) && v.VestigingLesgroep.Vestiging.id.ToString() == sec.SISSchoolid)).ToList();
                 foreach (var student in huidigeLeerlingen)
                 {
                     if (!string.IsNullOrEmpty(student.leerlingUsername))
