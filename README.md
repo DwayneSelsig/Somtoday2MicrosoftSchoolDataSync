@@ -1,5 +1,5 @@
 # Somtoday2MicrosoftSchoolDataSync
-Open source oplossing om Microsoft Teams te kunnen gebruiken met School Data Sync met gegevens uit Somtoday. 
+Open source oplossing om Microsoft Teams te kunnen gebruiken met School Data Sync met gegevens uit [Somtoday](https://www.som.today/). 
 Create Microsoft School Data Sync CSV-files using the Somtoday webservices. 
 
 De CSV bestanden zijn nodig, omdat een directe verbinding niet mogelijk is. Somtoday biedt **geen** ondersteuning voor de OneRoster standaard: https://www.imsglobal.org/oneroster-v11-final-specification. Zodra zij dat wel doen, is deze applicatie overbodig.
