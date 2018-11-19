@@ -24,6 +24,7 @@ namespace Somtoday2MicrosoftSchoolDataSync
         static readonly int StartYear = DateTime.Now.Month < 8 ? (DateTime.Now.Year - 1) : DateTime.Now.Year;
         static readonly int EndYear = DateTime.Now.Month < 8 ? (DateTime.Now.Year) : (DateTime.Now.Year + 1);
         static readonly string umServiceSchooljaar = StartYear + "/" + EndYear;
+
         static EventLogHelper eh = new EventLogHelper();
 
         #region sluiten van app door user
@@ -64,9 +65,13 @@ namespace Somtoday2MicrosoftSchoolDataSync
             SetConsoleCtrlHandler(_handler, true);
             //sluiten van app door user
 
-
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11;
-            StartProgram();
+
+            SettingsHelper sh = new SettingsHelper();
+            if (sh.ValidateUsernameFormat())
+            {
+                StartProgram();
+            }
         }
         private static void StartProgram()
         {

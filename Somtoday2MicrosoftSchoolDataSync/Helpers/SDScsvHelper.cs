@@ -13,6 +13,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
         List<VestigingLesgroepModel> vestigingLesgroepen;
         List<UserLesgroepModel> docentLesgroepen;
         List<UserLesgroepModel> leerlingLesgroepen;
+        SettingsHelper sh = new SettingsHelper();
 
         public SDScsvHelper(List<VestigingLesgroepModel> vestigingLesgroepenModel, List<UserLesgroepModel> docentLesgroepenModel, List<UserLesgroepModel> leerlingLesgroepenModel)
         {
@@ -20,6 +21,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             docentLesgroepen = docentLesgroepenModel;
             leerlingLesgroepen = leerlingLesgroepenModel;
         }
+
 
         internal SDScsv GetSDScsv()
         {
@@ -121,9 +123,9 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             {
                 var lesgevendDocent = vestigingLesgroepen.SelectMany(d => d.Lesgroepen).ToList();
                 var docentenLijst = lesgevendDocent.Where(d => d.docenten != null).ToList();
-                var lesgroepje = docentenLijst.Where(d => d.docenten.Any(o => o.docentUUID == employee.medewerkerUUID)).ToList();
+                var lesgroep = docentenLijst.Where(d => d.docenten.Any(o => o.docentUUID == employee.medewerkerUUID)).ToList();
 
-                if (lesgroepje != null && lesgroepje.Count > 0)
+                if (lesgroep != null && lesgroep.Count > 0)
                 {
                     string sISSchoolid = vestigingLesgroepen.Where(v => v.Vestiging.afkorting == employee.medewerkerDefaultVestiging).FirstOrDefault()?.Vestiging.id.ToString();
 
@@ -142,15 +144,18 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
                     if (!string.IsNullOrEmpty(sISSchoolid))
                     {
-                        teachers.Add(new Teacher
+                        if (!string.IsNullOrEmpty(sh.ReplaceTeacherProperty(employee)))
                         {
-                            //Firstname = employeecsv.Firstname,
-                            //Lastname = employeecsv.Lastname,
-                            SISid = employee.medewerkerUsername,
-                            SISSchoolid = sISSchoolid,
-                            Username = employee.medewerkerUsername,
-                            //Password = "Welkom" + DateTime.Now.Year
-                        });
+                            teachers.Add(new Teacher
+                            {
+                                //Firstname = employeecsv.Firstname,
+                                //Lastname = employeecsv.Lastname,
+                                SISid = sh.ReplaceTeacherProperty(employee),
+                                SISSchoolid = sISSchoolid,
+                                Username = sh.ReplaceTeacherProperty(employee),
+                                //Password = "Welkom" + DateTime.Now.Year
+                            });
+                        }
                     }
                 }
             }
@@ -170,15 +175,18 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
                 foreach (var student in leerlingenActief)
                 {
-                    students.Add(new Student
+                    if (!string.IsNullOrEmpty(sh.ReplaceStudentProperty(student)))
                     {
-                        //Firstname = studentCsv.Firstname,
-                        //Lastname = studentCsv.Lastname,
-                        SISid = student.leerlingNummer.ToString(),
-                        SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
-                        Username = student.leerlingNummer.ToString(),
-                        //Password = "Welkom" + DateTime.Now.Year
-                    });
+                        students.Add(new Student
+                        {
+                            //Firstname = studentCsv.Firstname,
+                            //Lastname = studentCsv.Lastname,                        
+                            SISid = sh.ReplaceStudentProperty(student),
+                            SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
+                            Username = sh.ReplaceStudentProperty(student),
+                            //Password = "Welkom" + DateTime.Now.Year
+                        });
+                    }
                 }
             }
             students = students.GroupBy(o => new { o.Firstname, o.Lastname, o.Password, o.SISid, o.SISSchoolid, o.Username }).Select(o => o.FirstOrDefault()).ToList();
@@ -221,11 +229,14 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                                     string vestigingsAfkorting = docentLesgroep.VestigingLesgroep.Vestiging.afkorting;
                                     string sectieNaam = GetFilteredName(lesgroep.naam);
 
-                                    _teacherRosters.Add(new TeacherRoster
+                                    if (!string.IsNullOrEmpty(sh.ReplaceTeacherProperty(docent)))
                                     {
-                                        SISSectionid = lesgroep.naam.ToLower().StartsWith(vestigingsAfkorting.ToLower()) ? sectieNaam : vestigingsAfkorting.ToLower() + sectieNaam,
-                                        SISTeacherid = docent.medewerkerUsername
-                                    });
+                                        _teacherRosters.Add(new TeacherRoster
+                                        {
+                                            SISSectionid = lesgroep.naam.ToLower().StartsWith(vestigingsAfkorting.ToLower()) ? sectieNaam : vestigingsAfkorting.ToLower() + sectieNaam,
+                                            SISTeacherid = sh.ReplaceTeacherProperty(docent),
+                                        });
+                                    }
                                 }
                             }
 
@@ -256,12 +267,12 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                 var huidigeLeerlingen = leerlingLesgroepen.SelectMany(v => v.Users.Where(l => !string.IsNullOrEmpty(l.leerlingUsername) && l.leerlingActief.ToLower() == "actief" && l.leerlingLesgroepen.Split(',').Any(lg => GetFilteredName(lg) == sec.Name) && v.VestigingLesgroep.Vestiging.id.ToString() == sec.SISSchoolid)).ToList();
                 foreach (var student in huidigeLeerlingen)
                 {
-                    if (!string.IsNullOrEmpty(student.leerlingUsername))
+                    if (!string.IsNullOrEmpty(sh.ReplaceStudentProperty(student)))
                     {
                         _studentEnrollments.Add(new StudentEnrollment
                         {
                             SISSectionid = sec.SISid,
-                            SISStudentid = student.leerlingNummer.ToString()
+                            SISStudentid = sh.ReplaceStudentProperty(student)
                         });
                     }
                 }
