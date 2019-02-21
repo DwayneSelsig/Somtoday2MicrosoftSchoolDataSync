@@ -13,17 +13,25 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
     class SettingsHelper
     {
-        static readonly string OutputFormatUsernameTeacher = ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"];
-        static readonly string OutputFormatUsernameStudent = ConfigurationManager.AppSettings["OutputFormatUsernameStudent"];
+        public static readonly string OutputFormatUsernameTeacher = ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"];
+        //public static readonly string OutputFormatFirstnameTeacher = ConfigurationManager.AppSettings["OutputFormatFirstnameTeacher"];
+        //public static readonly string OutputFormatLastnameTeacher = ConfigurationManager.AppSettings["OutputFormatLastnameTeacher"];
+        public static readonly string OutputFormatUsernameStudent = ConfigurationManager.AppSettings["OutputFormatUsernameStudent"];
+        //public static readonly string OutputFormatFirstnameStudent = ConfigurationManager.AppSettings["OutputFormatFirstnameStudent"];
+        //public static readonly string OutputFormatLastnameStudent = ConfigurationManager.AppSettings["OutputFormatLastnameStudent"];
+
         EventLogHelper eh = new EventLogHelper();
 
         internal bool ValidateUsernameFormat()
         {
             bool success = true;
-            webserviceUmObject dummyUser = new webserviceUmObject() { medewerkerUsername = "dsffg" };
+            webserviceUmObject dummyUser = new webserviceUmObject() { medewerkerUsername = "testnaam" };
             try
             {
                 ReplaceUserProperty(OutputFormatUsernameTeacher, dummyUser);
+                //ReplaceUserProperty(OutputFormatFirstnameTeacher, dummyUser);
+                //ReplaceUserProperty(OutputFormatLastnameTeacher, dummyUser);
+
             }
             catch (Exception ex)
             {
@@ -34,6 +42,8 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             try
             {
                 ReplaceUserProperty(OutputFormatUsernameStudent, dummyUser);
+                //ReplaceUserProperty(OutputFormatFirstnameStudent, dummyUser);
+                //ReplaceUserProperty(OutputFormatLastnameStudent, dummyUser);
             }
             catch (Exception ex)
             {
@@ -43,14 +53,14 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             return success;
         }
 
-        internal string ReplaceTeacherProperty(webserviceUmObject userobj)
+        internal string ReplaceTeacherProperty(string format, webserviceUmObject userobj)
         {
-            return ReplaceUserProperty(OutputFormatUsernameTeacher, userobj);
+            return ReplaceUserProperty(format, userobj);
         }
 
-        internal string ReplaceStudentProperty(webserviceUmObject userobj)
+        internal string ReplaceStudentProperty(string format, webserviceUmObject userobj)
         {
-            return ReplaceUserProperty(OutputFormatUsernameStudent, userobj);
+            return ReplaceUserProperty(format, userobj);
         }
 
 

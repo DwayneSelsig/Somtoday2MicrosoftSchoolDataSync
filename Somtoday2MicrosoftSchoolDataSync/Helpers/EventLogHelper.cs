@@ -32,7 +32,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             }
             catch (Exception ex)
             {
-
+                
             }
         }
 
