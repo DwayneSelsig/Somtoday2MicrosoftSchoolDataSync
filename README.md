@@ -73,5 +73,5 @@ Dit is noodzakelijk als je meer dan 500.000 rijen in één bestand hebt. https:/
 
 ## Volgende stappen
 
-Synchroniseer de CSV-bestanden m.b.v. de School Data Sync Toolkit.
-https://docs.microsoft.com/en-us/schooldatasync/install-the-school-data-sync-toolkit
+Synchroniseer de CSV-bestanden m.b.v. de SDS Flow Connector.
+https://docs.microsoft.com/en-us/schooldatasync/csv-file-sync-automation
