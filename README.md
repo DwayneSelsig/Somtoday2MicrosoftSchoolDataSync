@@ -17,7 +17,7 @@ De CSV bestanden zijn nodig, omdat een directe verbinding niet mogelijk is. Somt
 
 
 ## Installatie
-[Download de installatie](setup.exe) en volg de wizard.
+[Download het ZIP-bestand](Somtoday2MicrosoftSchoolDataSync.zip) en pak de bestanden uit.
 
 Tip: Maak een scheduled task aan. Het synchroniseren van leerlingegevens is alleen ’s nachts toegestaan vanuit Somtoday.
 
