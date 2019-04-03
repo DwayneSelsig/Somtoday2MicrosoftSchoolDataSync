@@ -65,6 +65,7 @@ namespace Somtoday2MicrosoftSchoolDataSync
             SetConsoleCtrlHandler(_handler, true);
             //sluiten van app door user
 
+            //Beveiliging instellen van webservice
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11;
 
             SettingsHelper sh = new SettingsHelper();

@@ -143,7 +143,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -217,7 +217,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -277,7 +277,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -449,7 +449,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -565,7 +565,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -639,7 +639,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -699,7 +699,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -815,7 +815,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1183,7 +1183,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1215,6 +1215,8 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         private string leerlingBekostigingBRINNaamField;
         
         private string leerlingBekostigingBRINVolgnummerField;
+        
+        private string leerlingEckIDField;
         
         private string leerlingEmailField;
         
@@ -1309,6 +1311,8 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         private string medewerkerDefaultVestigingField;
         
         private string medewerkerDefaultVestigingNaamField;
+        
+        private string medewerkerEckIDField;
         
         private string medewerkerEmailField;
         
@@ -1576,6 +1580,18 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
+        public string leerlingEckID {
+            get {
+                return this.leerlingEckIDField;
+            }
+            set {
+                this.leerlingEckIDField = value;
+                this.RaisePropertyChanged("leerlingEckID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string leerlingEmail {
             get {
                 return this.leerlingEmailField;
@@ -1587,7 +1603,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=15)]
         public string leerlingExamennummer {
             get {
                 return this.leerlingExamennummerField;
@@ -1599,7 +1615,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public string leerlingExamenvoorvoegsel {
             get {
                 return this.leerlingExamenvoorvoegselField;
@@ -1611,7 +1627,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
         public string leerlingExternExportID {
             get {
                 return this.leerlingExternExportIDField;
@@ -1623,7 +1639,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
         public string leerlingGeboortedatum {
             get {
                 return this.leerlingGeboortedatumField;
@@ -1635,7 +1651,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=19)]
         public string leerlingGeslacht {
             get {
                 return this.leerlingGeslachtField;
@@ -1647,7 +1663,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=19)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=20)]
         public string leerlingKluisAfname {
             get {
                 return this.leerlingKluisAfnameField;
@@ -1659,7 +1675,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=20)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=21)]
         public string leerlingLeerjaar {
             get {
                 return this.leerlingLeerjaarField;
@@ -1671,7 +1687,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=21)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=22)]
         public string leerlingLesgroepen {
             get {
                 return this.leerlingLesgroepenField;
@@ -1683,7 +1699,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=22)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=23)]
         public string leerlingLesgroepenVakken {
             get {
                 return this.leerlingLesgroepenVakkenField;
@@ -1695,7 +1711,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=23)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=24)]
         public string leerlingLgfIndicaties {
             get {
                 return this.leerlingLgfIndicatiesField;
@@ -1707,7 +1723,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=24)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=25)]
         public string leerlingMentoren {
             get {
                 return this.leerlingMentorenField;
@@ -1719,7 +1735,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=25)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=26)]
         public string leerlingMobielNummer {
             get {
                 return this.leerlingMobielNummerField;
@@ -1731,7 +1747,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=26)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=27)]
         public long leerlingNummer {
             get {
                 return this.leerlingNummerField;
@@ -1755,7 +1771,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=27)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=28)]
         public string leerlingOnderwijsnummer {
             get {
                 return this.leerlingOnderwijsnummerField;
@@ -1767,7 +1783,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=28)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=29)]
         public string leerlingOpenIdIdentifier {
             get {
                 return this.leerlingOpenIdIdentifierField;
@@ -1779,7 +1795,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=29)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=30)]
         public string leerlingOpleidingCode {
             get {
                 return this.leerlingOpleidingCodeField;
@@ -1791,7 +1807,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=30)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=31)]
         public string leerlingOpleidingVestiging {
             get {
                 return this.leerlingOpleidingVestigingField;
@@ -1803,7 +1819,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=31)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=32)]
         public string leerlingProfielSector {
             get {
                 return this.leerlingProfielSectorField;
@@ -1815,7 +1831,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=32)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=33)]
         public string leerlingRoepnaam {
             get {
                 return this.leerlingRoepnaamField;
@@ -1827,7 +1843,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=33)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=34)]
         public string leerlingStamgroep {
             get {
                 return this.leerlingStamgroepField;
@@ -1839,7 +1855,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=34)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=35)]
         public string leerlingToegangspasNummer {
             get {
                 return this.leerlingToegangspasNummerField;
@@ -1851,7 +1867,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=35)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=36)]
         public string leerlingUUID {
             get {
                 return this.leerlingUUIDField;
@@ -1863,7 +1879,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=36)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=37)]
         public string leerlingUmVrijeVelden {
             get {
                 return this.leerlingUmVrijeVeldenField;
@@ -1875,7 +1891,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=37)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=38)]
         public string leerlingUsername {
             get {
                 return this.leerlingUsernameField;
@@ -1887,7 +1903,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=38)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=39)]
         public string leerlingVakken {
             get {
                 return this.leerlingVakkenField;
@@ -1899,7 +1915,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=39)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=40)]
         public string leerlingVestigingAfkorting {
             get {
                 return this.leerlingVestigingAfkortingField;
@@ -1911,7 +1927,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=40)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=41)]
         public string leerlingVestigingNaam {
             get {
                 return this.leerlingVestigingNaamField;
@@ -1923,7 +1939,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=41)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=42)]
         public string leerlingVestigingVolgnummer {
             get {
                 return this.leerlingVestigingVolgnummerField;
@@ -1935,7 +1951,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=42)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=43)]
         public string leerlingVoorletters {
             get {
                 return this.leerlingVoorlettersField;
@@ -1947,7 +1963,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=43)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=44)]
         public string leerlingVoorvoegsel {
             get {
                 return this.leerlingVoorvoegselField;
@@ -1959,7 +1975,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=44)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=45)]
         public string leerlingWachtwoord {
             get {
                 return this.leerlingWachtwoordField;
@@ -1971,7 +1987,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=45)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=46)]
         public string medewerkerAchternaam {
             get {
                 return this.medewerkerAchternaamField;
@@ -1983,7 +1999,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=46)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=47)]
         public string medewerkerActiefOmschrijving {
             get {
                 return this.medewerkerActiefOmschrijvingField;
@@ -1995,7 +2011,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=47)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=48)]
         public string medewerkerAdresHuisnummer {
             get {
                 return this.medewerkerAdresHuisnummerField;
@@ -2007,7 +2023,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=48)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=49)]
         public string medewerkerAdresPlaats {
             get {
                 return this.medewerkerAdresPlaatsField;
@@ -2019,7 +2035,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=49)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=50)]
         public string medewerkerAdresPostcode {
             get {
                 return this.medewerkerAdresPostcodeField;
@@ -2031,7 +2047,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=50)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=51)]
         public string medewerkerAdresStraat {
             get {
                 return this.medewerkerAdresStraatField;
@@ -2043,7 +2059,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=51)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=52)]
         public string medewerkerAdresStraatHuisnummer {
             get {
                 return this.medewerkerAdresStraatHuisnummerField;
@@ -2055,7 +2071,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=52)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=53)]
         public string medewerkerAdresTelefoonNummer {
             get {
                 return this.medewerkerAdresTelefoonNummerField;
@@ -2067,7 +2083,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=53)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=54)]
         public bool medewerkerAdresTelefoonNummerGeheim {
             get {
                 return this.medewerkerAdresTelefoonNummerGeheimField;
@@ -2079,7 +2095,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=54)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=55)]
         public string medewerkerAdresToevoeging {
             get {
                 return this.medewerkerAdresToevoegingField;
@@ -2091,7 +2107,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=55)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=56)]
         public string medewerkerAfkorting {
             get {
                 return this.medewerkerAfkortingField;
@@ -2103,7 +2119,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=56)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=57)]
         public string medewerkerBSN {
             get {
                 return this.medewerkerBSNField;
@@ -2115,7 +2131,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=57)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=58)]
         public string medewerkerDefaultVestiging {
             get {
                 return this.medewerkerDefaultVestigingField;
@@ -2127,7 +2143,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=58)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=59)]
         public string medewerkerDefaultVestigingNaam {
             get {
                 return this.medewerkerDefaultVestigingNaamField;
@@ -2139,7 +2155,19 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=59)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=60)]
+        public string medewerkerEckID {
+            get {
+                return this.medewerkerEckIDField;
+            }
+            set {
+                this.medewerkerEckIDField = value;
+                this.RaisePropertyChanged("medewerkerEckID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=61)]
         public string medewerkerEmail {
             get {
                 return this.medewerkerEmailField;
@@ -2151,7 +2179,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=60)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=62)]
         public string medewerkerFunctie {
             get {
                 return this.medewerkerFunctieField;
@@ -2163,7 +2191,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=61)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=63)]
         public string medewerkerGeboortedatum {
             get {
                 return this.medewerkerGeboortedatumField;
@@ -2175,7 +2203,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=62)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=64)]
         public string medewerkerGeslacht {
             get {
                 return this.medewerkerGeslachtField;
@@ -2187,7 +2215,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=63)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=65)]
         public string medewerkerInternNummer {
             get {
                 return this.medewerkerInternNummerField;
@@ -2199,7 +2227,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=64)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=66)]
         public string medewerkerLesgroepenVakken {
             get {
                 return this.medewerkerLesgroepenVakkenField;
@@ -2211,7 +2239,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=65)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=67)]
         public string medewerkerMeisjesnaam {
             get {
                 return this.medewerkerMeisjesnaamField;
@@ -2223,7 +2251,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=66)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=68)]
         public string medewerkerMobielNummer {
             get {
                 return this.medewerkerMobielNummerField;
@@ -2235,7 +2263,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=67)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=69)]
         public bool medewerkerMobielNummerGeheim {
             get {
                 return this.medewerkerMobielNummerGeheimField;
@@ -2247,7 +2275,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=68)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=70)]
         public string medewerkerNummer {
             get {
                 return this.medewerkerNummerField;
@@ -2259,7 +2287,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=69)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=71)]
         public bool medewerkerOndersteunend {
             get {
                 return this.medewerkerOndersteunendField;
@@ -2271,7 +2299,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=70)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=72)]
         public bool medewerkerOnderwijzend {
             get {
                 return this.medewerkerOnderwijzendField;
@@ -2283,7 +2311,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=71)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=73)]
         public string medewerkerOpenIdIdentifier {
             get {
                 return this.medewerkerOpenIdIdentifierField;
@@ -2295,7 +2323,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=72)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=74)]
         public string medewerkerRoepnaam {
             get {
                 return this.medewerkerRoepnaamField;
@@ -2307,7 +2335,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=73)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=75)]
         public string medewerkerRollen {
             get {
                 return this.medewerkerRollenField;
@@ -2319,7 +2347,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=74)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=76)]
         public string medewerkerToegangspasNummer {
             get {
                 return this.medewerkerToegangspasNummerField;
@@ -2331,7 +2359,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=75)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=77)]
         public string medewerkerUUID {
             get {
                 return this.medewerkerUUIDField;
@@ -2343,7 +2371,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=76)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=78)]
         public string medewerkerUmVrijeVelden {
             get {
                 return this.medewerkerUmVrijeVeldenField;
@@ -2355,7 +2383,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=77)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=79)]
         public string medewerkerUsername {
             get {
                 return this.medewerkerUsernameField;
@@ -2367,7 +2395,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=78)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=80)]
         public string medewerkerVestigingen {
             get {
                 return this.medewerkerVestigingenField;
@@ -2379,7 +2407,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=79)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=81)]
         public string medewerkerVoorletters {
             get {
                 return this.medewerkerVoorlettersField;
@@ -2391,7 +2419,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=80)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=82)]
         public string medewerkerVoorvoegsel {
             get {
                 return this.medewerkerVoorvoegselField;
@@ -2403,7 +2431,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=81)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=83)]
         public string medewerkerWachtwoord {
             get {
                 return this.medewerkerWachtwoordField;
@@ -2415,7 +2443,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=82)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=84)]
         public string verzorgerAchternaam {
             get {
                 return this.verzorgerAchternaamField;
@@ -2427,7 +2455,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=83)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=85)]
         public string verzorgerAdresHuisnummer {
             get {
                 return this.verzorgerAdresHuisnummerField;
@@ -2439,7 +2467,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=84)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=86)]
         public string verzorgerAdresPlaats {
             get {
                 return this.verzorgerAdresPlaatsField;
@@ -2451,7 +2479,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=85)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=87)]
         public string verzorgerAdresPostcode {
             get {
                 return this.verzorgerAdresPostcodeField;
@@ -2463,7 +2491,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=86)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=88)]
         public string verzorgerAdresStraat {
             get {
                 return this.verzorgerAdresStraatField;
@@ -2475,7 +2503,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=87)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=89)]
         public string verzorgerAdresStraatHuisnummer {
             get {
                 return this.verzorgerAdresStraatHuisnummerField;
@@ -2487,7 +2515,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=88)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=90)]
         public string verzorgerAdresTelefoonNummer {
             get {
                 return this.verzorgerAdresTelefoonNummerField;
@@ -2499,7 +2527,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=89)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=91)]
         public bool verzorgerAdresTelefoonNummerGeheim {
             get {
                 return this.verzorgerAdresTelefoonNummerGeheimField;
@@ -2511,7 +2539,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=90)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=92)]
         public string verzorgerAdresToevoeging {
             get {
                 return this.verzorgerAdresToevoegingField;
@@ -2523,7 +2551,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=91)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=93)]
         public string verzorgerBICNummer {
             get {
                 return this.verzorgerBICNummerField;
@@ -2535,7 +2563,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=92)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=94)]
         public string verzorgerBSN {
             get {
                 return this.verzorgerBSNField;
@@ -2547,7 +2575,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=93)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=95)]
         public string verzorgerEmail {
             get {
                 return this.verzorgerEmailField;
@@ -2559,7 +2587,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=94)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=96)]
         public string verzorgerExternExportID {
             get {
                 return this.verzorgerExternExportIDField;
@@ -2571,7 +2599,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=95)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=97)]
         public string verzorgerGeslacht {
             get {
                 return this.verzorgerGeslachtField;
@@ -2583,7 +2611,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=96)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=98)]
         public string verzorgerIBANNummer {
             get {
                 return this.verzorgerIBANNummerField;
@@ -2595,7 +2623,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=97)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=99)]
         public long verzorgerID {
             get {
                 return this.verzorgerIDField;
@@ -2619,7 +2647,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=98)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=100)]
         public string verzorgerLeerlingRelaties {
             get {
                 return this.verzorgerLeerlingRelatiesField;
@@ -2631,7 +2659,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=99)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=101)]
         public string verzorgerMobielNummer {
             get {
                 return this.verzorgerMobielNummerField;
@@ -2643,7 +2671,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=100)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=102)]
         public bool verzorgerMobielNummerGeheim {
             get {
                 return this.verzorgerMobielNummerGeheimField;
@@ -2655,7 +2683,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=101)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=103)]
         public string verzorgerMobielWerkNummer {
             get {
                 return this.verzorgerMobielWerkNummerField;
@@ -2667,7 +2695,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=102)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=104)]
         public bool verzorgerMobielWerkNummerGeheim {
             get {
                 return this.verzorgerMobielWerkNummerGeheimField;
@@ -2679,7 +2707,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=103)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=105)]
         public string verzorgerOpenIdIdentifier {
             get {
                 return this.verzorgerOpenIdIdentifierField;
@@ -2691,7 +2719,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=104)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=106)]
         public string verzorgerTenaamstelling {
             get {
                 return this.verzorgerTenaamstellingField;
@@ -2703,7 +2731,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=105)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=107)]
         public string verzorgerUUID {
             get {
                 return this.verzorgerUUIDField;
@@ -2715,7 +2743,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=106)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=108)]
         public string verzorgerUmVrijeVelden {
             get {
                 return this.verzorgerUmVrijeVeldenField;
@@ -2727,7 +2755,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=107)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=109)]
         public string verzorgerUsername {
             get {
                 return this.verzorgerUsernameField;
@@ -2739,7 +2767,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=108)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=110)]
         public string verzorgerVoorletters {
             get {
                 return this.verzorgerVoorlettersField;
@@ -2751,7 +2779,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=109)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=111)]
         public string verzorgerVoorvoegsel {
             get {
                 return this.verzorgerVoorvoegselField;
@@ -2763,7 +2791,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=110)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=112)]
         public string verzorgerWachtwoord {
             get {
                 return this.verzorgerWachtwoordField;
@@ -2775,7 +2803,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=111)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=113)]
         public string wuoSoort {
             get {
                 return this.wuoSoortField;
@@ -2797,7 +2825,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2927,7 +2955,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3029,7 +3057,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3117,7 +3145,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3177,7 +3205,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3475,7 +3503,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3521,7 +3549,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3819,7 +3847,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.UmService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]

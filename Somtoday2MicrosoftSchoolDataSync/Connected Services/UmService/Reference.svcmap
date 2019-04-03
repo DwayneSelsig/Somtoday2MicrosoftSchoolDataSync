@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4fb13035-7a1d-456c-8320-3e6ef07d714e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4a6f9be2-3521-46ba-a3f9-d3b819b804e5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://somtodayurl-oop.somtoday.nl/services/UmService.xml" Protocol="https" SourceId="1" />
+    <MetadataSource Address="c:\somtoday\UmService.xml" Protocol="file" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UmService.wsdl" MetadataType="Wsdl" ID="facc7b6c-1ef7-4e55-a59d-8d480d79f09d" SourceId="1" SourceUrl="https://somtodayurl-oop.somtoday.nl/services/UmService.xml" />
+    <MetadataFile FileName="UmService.wsdl" MetadataType="Wsdl" ID="a91069f4-b530-45fa-9327-7b1d50980c94" SourceId="1" SourceUrl="file:///c:/somtoday/UmService.xml" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -208,6 +208,7 @@
           <xs:element minOccurs="0" name="leerlingBSN" type="xs:string" />
           <xs:element minOccurs="0" name="leerlingBekostigingBRINNaam" type="xs:string" />
           <xs:element minOccurs="0" name="leerlingBekostigingBRINVolgnummer" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingEckID" type="xs:string" />
           <xs:element minOccurs="0" name="leerlingEmail" type="xs:string" />
           <xs:element minOccurs="0" name="leerlingExamennummer" type="xs:string" />
           <xs:element minOccurs="0" name="leerlingExamenvoorvoegsel" type="xs:string" />
@@ -254,6 +255,7 @@
           <xs:element minOccurs="0" name="medewerkerBSN" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerDefaultVestiging" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerDefaultVestigingNaam" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerEckID" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerEmail" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerFunctie" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerGeboortedatum" type="xs:string" />
