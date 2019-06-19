@@ -257,6 +257,7 @@
           <xs:element minOccurs="0" name="medewerkerDefaultVestigingNaam" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerEckID" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerExternNummer" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerFunctie" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerGeboortedatum" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerGeslacht" type="xs:string" />
@@ -377,11 +378,19 @@
       <xs:complexType name="medewerkerUmWrite">
         <xs:sequence>
           <xs:element minOccurs="0" name="medewerkerEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerExternNummer" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerGebruikersnaam" type="xs:string" />
           <xs:element minOccurs="0" name="medewerkerNummer" type="xs:long" />
           <xs:element minOccurs="0" name="medewerkerOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="medewerkerRemoteIdentifier" type="tns:remoteIdentifier" />
           <xs:element minOccurs="0" name="medewerkerWachtwoord" type="xs:string" />
           <xs:element name="medewerkerWachtwoordEncrypted" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="remoteIdentifier">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="remoteIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="writeDataMedewerkersResponse">
@@ -453,6 +462,7 @@
           <xs:element minOccurs="0" name="verzorgerGebruikersnaam" type="xs:string" />
           <xs:element minOccurs="0" name="verzorgerID" type="xs:long" />
           <xs:element minOccurs="0" name="verzorgerOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="verzorgerRemoteIdentifier" type="tns:remoteIdentifier" />
           <xs:element minOccurs="0" name="verzorgerWachtwoord" type="xs:string" />
           <xs:element name="verzorgerWachtwoordEncrypted" type="xs:boolean" />
         </xs:sequence>
@@ -518,6 +528,7 @@
           <xs:element minOccurs="0" name="leerlingGebruikersnaam" type="xs:string" />
           <xs:element minOccurs="0" name="leerlingNummer" type="xs:long" />
           <xs:element minOccurs="0" name="leerlingOpenIdIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" name="leerlingRemoteIdentifier" type="tns:remoteIdentifier" />
           <xs:element minOccurs="0" name="leerlingWachtwoord" type="xs:string" />
           <xs:element name="leerlingWachtwoordEncrypted" type="xs:boolean" />
           <xs:element minOccurs="0" name="wenstContactViaEmail" type="xs:boolean" />
@@ -804,7 +815,7 @@
   </wsdl:binding>
   <wsdl:service name="UmService">
     <wsdl:port name="umService" binding="tns:UmServiceSoapBinding">
-      <soap:address location="https://somtodayurl-oop.somtoday.nl/services/umService" />
+      <soap:address location="https://school-oop.somtoday.nl/services/umService" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

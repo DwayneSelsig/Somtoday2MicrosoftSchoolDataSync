@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="c:\somtoday\UmService.xml" Protocol="file" SourceId="1" />
+    <MetadataSource Address="UmService.xml" Protocol="file" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UmService.wsdl" MetadataType="Wsdl" ID="a91069f4-b530-45fa-9327-7b1d50980c94" SourceId="1" SourceUrl="file:///c:/somtoday/UmService.xml" />
+    <MetadataFile FileName="UmService.wsdl" MetadataType="Wsdl" ID="a91069f4-b530-45fa-9327-7b1d50980c94" SourceId="1" SourceUrl="UmService.xml" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

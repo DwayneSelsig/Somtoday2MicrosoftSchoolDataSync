@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="xWUJoXlWci3a/QPAEXgAlXSg1to=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="sVWuBDOsdO1Z+1LX75NmGeJonvI=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="UmServiceSoapBinding">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="umService" contract="UmService.UmService" bindingType="basicHttpBinding" address="https://somtodayurl-oop.somtoday.nl/services/umService" bindingConfiguration="UmServiceSoapBinding">
+    <endpoint name="umService" contract="UmService.UmService" bindingType="basicHttpBinding" address="https://school.somtoday.nl/services/umService" bindingConfiguration="UmServiceSoapBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://somtodayurl-oop.somtoday.nl/services/umService</serializedValue>
+          <serializedValue>https://calvijn-oop.somtoday.nl/services/umService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
