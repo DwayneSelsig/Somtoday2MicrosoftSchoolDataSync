@@ -66,6 +66,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
         {
             Console.Write("Lesgroepen samenstellen");
             List<Section> _sections = new List<Section>();
+            string currentSchoolyear = DateTime.Now.Month < 8 ? (DateTime.Now.Year - 1) + "-" + DateTime.Now.Year : DateTime.Now.Year + "-" + (DateTime.Now.Year + 1);
 
             foreach (var vestigingLesgroep in vestigingLesgroepen)
             {
@@ -89,7 +90,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                                 _sections.Add(new Section
                                 {
                                     SISSchoolid = vestigingLesgroep.Vestiging.id.ToString(),
-                                    SISid = lesgroep.naam.ToLower().StartsWith(vestigingsAfkorting.ToLower()) ? sectieNaam : vestigingsAfkorting.ToLower() + sectieNaam,
+                                    SISid = (lesgroep.naam.ToLower().StartsWith(vestigingsAfkorting.ToLower()) ? sectieNaam : vestigingsAfkorting.ToLower() + sectieNaam) + currentSchoolyear,
                                     Name = sectieNaam,
                                     Number = lesgroep.id.ToString(),
                                     CourseSISID = lesgroep.vak.id.ToString(),
@@ -144,7 +145,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
                     if (!string.IsNullOrEmpty(sISSchoolid))
                     {
-                        
+
                         if (!string.IsNullOrEmpty(sh.ReplaceTeacherProperty(SettingsHelper.OutputFormatUsernameTeacher, employee)))
                         {
                             teachers.Add(new Teacher
@@ -215,6 +216,8 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                     }
                     if (lesgroep.docenten != null && lesgroep.docenten.Count() > 0)
                     {
+                        string currentSchoolyear = DateTime.Now.Month < 8 ? (DateTime.Now.Year - 1) + "-" + DateTime.Now.Year : DateTime.Now.Year + "-" + (DateTime.Now.Year + 1);
+
                         foreach (var lesgroepdocent in lesgroep.docenten)
                         {
                             var docent = docentLesgroepen.SelectMany(u => u.Users.Where(m => m.medewerkerUUID == lesgroepdocent.docentUUID && m.medewerkerActiefOmschrijving.ToLower() == "in dienst")).FirstOrDefault();
@@ -233,7 +236,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                                     {
                                         _teacherRosters.Add(new TeacherRoster
                                         {
-                                            SISSectionid = lesgroep.naam.ToLower().StartsWith(vestigingsAfkorting.ToLower()) ? sectieNaam : vestigingsAfkorting.ToLower() + sectieNaam,
+                                            SISSectionid = (lesgroep.naam.ToLower().StartsWith(vestigingsAfkorting.ToLower()) ? sectieNaam : vestigingsAfkorting.ToLower() + sectieNaam) + currentSchoolyear,
                                             SISTeacherid = docent.medewerkerNummer,
                                         });
                                     }
