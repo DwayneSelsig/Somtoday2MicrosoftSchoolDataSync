@@ -1,5 +1,3 @@
-Voor een koppeling met Magister, kijk hier: https://github.com/sikkepitje/TeamSync
-
 # Somtoday2MicrosoftSchoolDataSync
 Open source oplossing om Microsoft Teams te kunnen gebruiken met School Data Sync met gegevens uit [Somtoday](https://www.som.today/). 
 Create Microsoft School Data Sync CSV-files using the Somtoday webservices. 
@@ -77,3 +75,8 @@ Dit is noodzakelijk als je meer dan 500.000 rijen in één bestand hebt. https:/
 
 Synchroniseer de CSV-bestanden m.b.v. de SDS Flow Connector.
 https://docs.microsoft.com/en-us/schooldatasync/csv-file-sync-automation
+
+
+
+# Koppelen met Magister
+Kies hier voor een koppeling met Magister: https://github.com/sikkepitje/TeamSync
