@@ -10,8 +10,8 @@ De CSV bestanden zijn nodig, omdat een directe verbinding niet mogelijk is. Somt
 
 * Gebruikt de Windows Event Viewer om de status te loggen.
 * De lesgroepen van het huidige schooljaar worden opgevraagd.
-* Lesgroepen zonder docent worden **niet** opgeslagen.
-* Lesgroepen zonder leerling worden **niet** opgeslagen.
+* Lesgroepen zonder docent worden **niet** verwerkt.
+* Lesgroepen zonder leerling worden **niet** verwerkt.
 * Lesgroepen krijgen een "Uniek ID" op basis van de vestigingsafkorting. Dit ziet men **niet** terug in de DisplayName van de lesgroep.
 * Ongeldige tekens worden vervangen. https://support.microsoft.com/en-us/kb/905231
 
