@@ -79,4 +79,4 @@ https://docs.microsoft.com/en-us/schooldatasync/csv-file-sync-automation
 
 
 # Koppelen met Magister
-Kies hier voor een koppeling met Magister: https://github.com/sikkepitje/TeamSync
+Gebruikt jouw school Magister en zoek je een koppeling tussen Magister en School Data Sync? Bezoek dan https://github.com/sikkepitje/TeamSync
