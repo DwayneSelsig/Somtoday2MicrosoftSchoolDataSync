@@ -8,7 +8,7 @@ De CSV bestanden zijn nodig, omdat een directe verbinding niet mogelijk is. Somt
 
 ## Functionaliteiten
 
-* Sla de status op in de Windows Event Viewer.
+* Gebruikt de Windows Event Viewer om de status te loggen.
 * De lesgroepen van het huidige schooljaar worden opgevraagd.
 * Lesgroepen zonder docent worden **niet** opgeslagen.
 * Lesgroepen zonder leerling worden **niet** opgeslagen.
