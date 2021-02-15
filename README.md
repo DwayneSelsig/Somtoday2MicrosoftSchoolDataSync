@@ -26,7 +26,7 @@ Tip: Maak een scheduled task aan. Het synchroniseren van leerlingegevens is alle
 Ga naar de installatie directory en bewerk Somtoday2MicrosoftSchoolDataSync.exe.config in een text editor.
 
 ### endpoint address
-Wijzig het endpoint address naar de URL van de Somtoday UmService van jouw school.
+Sinds 13 februari 2021 is het adres voor iedereen: https://oop.somtoday.nl/services/umService
 
 ### BooleanFilterBylocation
 
