@@ -1,6 +1,7 @@
 ﻿using Somtoday2MicrosoftSchoolDataSync.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -288,7 +289,25 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
         private string GetFilteredName(string input)
         {
             //Alles met een spatie of verboden teken voor OneDrive wordt omgezet naar _
-            return Regex.Replace(input, @"[^\S]|[\~\""\#\%\&\*\:\<\>\?\/\\{\|}\.]", "_");
+            string _temp = Regex.Replace(input, @"[^\S]|[\~\""\#\%\&\*\:\<\>\?\/\\{\|}\.]", "_");
+            return RemoveDiacritics(_temp);
+        }
+
+        private string RemoveDiacritics(string text)
+        {
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }
