@@ -14,13 +14,15 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
         List<VestigingLesgroepModel> vestigingLesgroepen;
         List<UserLesgroepModel> docentLesgroepen;
         List<UserLesgroepModel> leerlingLesgroepen;
+        List<UserLesgroepModel> ouderLesgroepen;
         SettingsHelper sh = new SettingsHelper();
 
-        public SDScsvHelper(List<VestigingLesgroepModel> vestigingLesgroepenModel, List<UserLesgroepModel> docentLesgroepenModel, List<UserLesgroepModel> leerlingLesgroepenModel)
+        public SDScsvHelper(List<VestigingLesgroepModel> vestigingLesgroepenModel, List<UserLesgroepModel> docentLesgroepenModel, List<UserLesgroepModel> leerlingLesgroepenModel, List<UserLesgroepModel> ouderLesgroepenModel)
         {
             vestigingLesgroepen = vestigingLesgroepenModel;
             docentLesgroepen = docentLesgroepenModel;
             leerlingLesgroepen = leerlingLesgroepenModel;
+            ouderLesgroepen = ouderLesgroepenModel;
         }
 
 
@@ -38,6 +40,9 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             List<TeacherRoster> TeacherRosters = GetTeacherRosters();
             List<StudentEnrollment> StudentEnrollments = GetStudentEnrollments(Sections);
 
+            Tuple<List<Guardian>, List<GuardianRelationship>> ouderData = GetGuardianData();
+            List<Guardian> Guardians = ouderData.Item1;
+            List<GuardianRelationship> GuardianRelationships = ouderData.Item2;
 
             _sdscsv.Schools = Schools;
             _sdscsv.Sections = Sections;
@@ -45,6 +50,8 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             _sdscsv.Students = Students;
             _sdscsv.TeacherRosters = TeacherRosters;
             _sdscsv.StudentEnrollments = StudentEnrollments;
+            _sdscsv.User = Guardians;
+            _sdscsv.Guardianrelationship = GuardianRelationships;
             Console.WriteLine();
 
             return _sdscsv;
@@ -154,8 +161,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                                 SISid = employee.medewerkerNummer,
                                 SISSchoolid = sISSchoolid,
                                 Username = sh.ReplaceTeacherProperty(SettingsHelper.OutputFormatUsernameTeacher, employee),
-                                //Firstname = sh.ReplaceTeacherProperty(SettingsHelper.OutputFormatFirstnameTeacher, employee),
-                                //Lastname = sh.ReplaceTeacherProperty(SettingsHelper.OutputFormatLastnameTeacher, employee),
                             });
                         }
                     }
@@ -184,9 +189,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                             SISid = student.leerlingNummer.ToString(),
                             SISSchoolid = userLesgroep.VestigingLesgroep.Vestiging.id.ToString(),
                             Username = sh.ReplaceStudentProperty(SettingsHelper.OutputFormatUsernameStudent, student),
-                            //Firstname = sh.ReplaceStudentProperty(SettingsHelper.OutputFormatFirstnameStudent, student),
-                            //Lastname = sh.ReplaceStudentProperty(SettingsHelper.OutputFormatLastnameStudent, student),
-
                         });
                     }
                 }
@@ -286,10 +288,74 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             return _studentEnrollments;
         }
 
+        private Tuple<List<Guardian>, List<GuardianRelationship>> GetGuardianData()
+        {
+            // https://docs.microsoft.com/en-us/schooldatasync/parent-contact-sync-file-format
+            Console.Write("Oudergegevens samenstellen");
+            int i = 0;
+
+            List<Guardian> ouders = new List<Guardian>();
+            List<GuardianRelationship> ouderRelaties = new List<GuardianRelationship>();
+            foreach (UserLesgroepModel ouderLesgroep in ouderLesgroepen)
+            {
+                List<UmService.webserviceUmObject> leerlingenVanDeVestiging = leerlingLesgroepen.Where(vl => vl.VestigingLesgroep == ouderLesgroep.VestigingLesgroep).Select(l => l.Users.Where(o => !string.IsNullOrEmpty(o.leerlingUsername) && o.leerlingActief.ToLower() == "actief" && !string.IsNullOrEmpty(o.leerlingUsername)).Distinct().ToList()).FirstOrDefault();
+                foreach (var ouderObject in ouderLesgroep.Users)
+                {
+                    foreach (var leerlingData in ouderObject.verzorgerLeerlingRelaties.Split(':'))
+                    {
+                        i++;
+                        if (i > 100)
+                        {
+                            Console.Write(".");
+                            i = 0;
+                        }
+                        string[] ouderGegevens = leerlingData.Split(',');
+                        /* De opbouw van de verzorgerLeerlingRelaties is verder als volgt:
+                           [0]BurgerServiceNummer leerling, [1]Onderwijsnummmer leerling, [2]leerlingnummer, [3]relatie type, [4]Wettelijk, [5]Factuur, [6]Post, [7]extern debiteurnummer.
+
+                           Als er geen BSN bekend is, gebruik je het onderwijsnummer (deze wordt dan door DUO verstrekt). Wettelijk, factuur en post zijn kenmerken in Somtoday. Een school kan deze vrij gebruiken. Indien aangevinkt geeft dit de waarde ja, anders een nee. 
+                           Indien factuur ja is, wordt er een extern debiteurnummer meegegeven. 
+                           Indien de verzorger meerdere kinderen als leerlingen heeft, worden deze achter elkaar getoond met een dubbele punt (:) als scheidingsteken. 
+                         */
+                        if (ouderGegevens[4].ToLower() == "ja") //Indien dit de wettelijke ouder/voogd is.
+                        {
+                            if (!string.IsNullOrEmpty(ouderObject.verzorgerEmail)) //Als de ouder een e-mailadres heeft
+                            {
+                                UmService.webserviceUmObject gevondenLeerling = leerlingenVanDeVestiging.Where(l => l.leerlingNummer.ToString() == ouderGegevens[2]).FirstOrDefault();
+                                if (gevondenLeerling != null)
+                                {
+                                    ouders.Add(new Guardian
+                                    {
+                                        Email = ouderObject.verzorgerEmail,
+                                        FirstName = ouderObject.verzorgerVoorletters,
+                                        LastName = ouderObject.verzorgerAchternaam,
+                                        Phone = ouderObject.verzorgerMobielNummerGeheim || String.IsNullOrEmpty(ouderObject.verzorgerMobielNummer) ? (ouderObject.verzorgerAdresTelefoonNummerGeheim || String.IsNullOrEmpty(ouderObject.verzorgerAdresTelefoonNummer) ? (ouderObject.verzorgerMobielWerkNummerGeheim || String.IsNullOrEmpty(ouderObject.verzorgerMobielWerkNummer) ? "" : ouderObject.verzorgerMobielWerkNummer) : ouderObject.verzorgerAdresTelefoonNummer) : ouderObject.verzorgerMobielNummer,
+                                        //Mobielnummer. Als dit geheim is of niet ingevuld, dan thuisnummer gebruiken.
+                                        //Thuisnummer.  Als dit geheim is of niet ingevuld, dan werknummer gebruiken.
+                                        //Werknummer.   Als dit geheim is, geen nummer invullen.
+                                        SISid = ouderObject.verzorgerUUID
+                                    });
+                                    ouderRelaties.Add(new GuardianRelationship
+                                    {
+                                        Email = ouderObject.verzorgerEmail,
+                                        SISid = gevondenLeerling.leerlingNummer.ToString()
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Console.Write(". ");
+            Console.WriteLine(ouders.Count);
+            return Tuple.Create<List<Guardian>, List<GuardianRelationship>>(ouders.GroupBy(o => o.SISid).Select(o => o.FirstOrDefault()).ToList(), ouderRelaties);
+        }
+
+
         private string GetFilteredName(string input)
         {
             //Alles met een spatie of verboden teken voor OneDrive wordt omgezet naar _
-            string _temp = Regex.Replace(input, @"[^\S]|[\~\""\#\%\&\*\:\<\>\?\/\\{\|}\.]", "_");
+            string _temp = Regex.Replace(input, @"[^\S]|[\~\""\#\%\&\*\:\<\>\?\/\\{\|}\.\[\]]", "_");
             return RemoveDiacritics(_temp);
         }
 

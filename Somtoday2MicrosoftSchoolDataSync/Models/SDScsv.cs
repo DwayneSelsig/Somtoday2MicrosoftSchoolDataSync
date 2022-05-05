@@ -16,6 +16,56 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
         public List<Teacher> Teachers { get; set; }
         public List<StudentEnrollment> StudentEnrollments { get; set; }
         public List<TeacherRoster> TeacherRosters { get; set; }
+        public List<Guardian> User { get; set; }  // ouders/guardians
+        public List<GuardianRelationship> Guardianrelationship { get; set; }
+    }
+
+
+    public class GuardianRelationship
+    {
+        [DisplayName("SIS ID")]
+        public string SISid { get; set; }
+        [DisplayName("Email")]
+        public string Email { get; set; }
+        [DisplayName("Role")]
+        public string Role { get; set; }
+    }
+    public sealed class GuardianRelationshipCSVMap : ClassMap<GuardianRelationship>
+    {
+        public GuardianRelationshipCSVMap()
+        {
+            AutoMap();
+            Map(m => m.SISid).Name("SIS ID");
+            Map(m => m.Email).Name("Email");
+            Map(m => m.Role).Name("Role");
+        }
+    }
+
+
+    public class Guardian
+    {
+        [DisplayName("Email")]
+        public string Email { get; set; }
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
+        [DisplayName("Phone")]
+        public string Phone { get; set; }
+        [DisplayName("SIS ID")]
+        public string SISid { get; set; }
+    }
+    public sealed class GuardianCSVMap : ClassMap<Guardian>
+    {
+        public GuardianCSVMap()
+        {
+            AutoMap();
+            Map(m => m.Email).Name("Email");
+            Map(m => m.FirstName).Name("First Name");
+            Map(m => m.LastName).Name("Last Name");
+            Map(m => m.Phone).Name("Phone");
+            Map(m => m.SISid).Name("SIS ID");
+        }
     }
 
 
@@ -70,9 +120,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
             Map(m => m.SISid).Name("SIS ID");
             Map(m => m.SISSchoolid).Name("School SIS ID");
             Map(m => m.Username).Name("Username");
-            //Map(m => m.Firstname).Name("First Name");
-            //Map(m => m.Lastname).Name("Last Name");
-            //Map(m => m.Password).Name("Password");
         }
     }
 
@@ -94,9 +141,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
             Map(m => m.SISid).Name("SIS ID");
             Map(m => m.SISSchoolid).Name("School SIS ID");
             Map(m => m.Username).Name("Username");
-            //Map(m => m.Firstname).Name("First Name");
-            //Map(m => m.Lastname).Name("Last Name");
-            //Map(m => m.Password).Name("Password");
         }
     }
 

@@ -13,7 +13,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
         private string umServiceUsername;
         private string umServicePassword;
         private string umServiceSchooljaar;
-        EventLogHelper eh = new EventLogHelper();
+        EventLogHelper eh = Program.eh;
 
         public ServiceHelper(string umServiceBrinNr, string umServiceUsername, string umServicePassword, string umServiceSchooljaar)
         {
@@ -100,6 +100,31 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                     catch (Exception ex)
                     {
                         eh.WriteLog(String.Format("Leerling download mislukt: {0}", ex.Message), System.Diagnostics.EventLogEntryType.Error, 500);
+                    }
+                }
+            }
+            Console.WriteLine();
+            return _userLesgroepModel;
+        }
+
+        internal List<UserLesgroepModel> GetGuardianInfo(List<VestigingLesgroepModel> vestigingLesgroepModel)
+        {
+            Console.WriteLine(string.Format("Oudergegevens opvragen..."));
+            List<UserLesgroepModel> _userLesgroepModel = new List<UserLesgroepModel>();
+            using (UmService.UmServiceClient us = new UmService.UmServiceClient())
+            {
+                foreach (var vestigingLesgroep in vestigingLesgroepModel)
+                {
+                    Console.Write(string.Format("Ouders {0}: ", vestigingLesgroep.Vestiging.afkorting));
+                    try
+                    {
+                        List<UmService.webserviceUmObject> ouders = us.getDataVerzorgers(umServiceBrinNr, umServiceUsername, umServicePassword, umServiceSchooljaar, vestigingLesgroep.Vestiging.afkorting).ToList(); ;
+                        Console.WriteLine(string.Format("{0}", ouders.Count()));
+                        _userLesgroepModel.Add(new UserLesgroepModel { Users = ouders, VestigingLesgroep = vestigingLesgroep });
+                    }
+                    catch (Exception ex)
+                    {
+                        eh.WriteLog(String.Format("Ouders download mislukt: {0}", ex.Message), System.Diagnostics.EventLogEntryType.Error, 500);
                     }
                 }
             }

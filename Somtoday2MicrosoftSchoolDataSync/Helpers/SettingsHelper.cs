@@ -13,14 +13,11 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
     class SettingsHelper
     {
-        public static readonly string OutputFormatUsernameTeacher = ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"];
-        //public static readonly string OutputFormatFirstnameTeacher = ConfigurationManager.AppSettings["OutputFormatFirstnameTeacher"];
-        //public static readonly string OutputFormatLastnameTeacher = ConfigurationManager.AppSettings["OutputFormatLastnameTeacher"];
-        public static readonly string OutputFormatUsernameStudent = ConfigurationManager.AppSettings["OutputFormatUsernameStudent"];
-        //public static readonly string OutputFormatFirstnameStudent = ConfigurationManager.AppSettings["OutputFormatFirstnameStudent"];
-        //public static readonly string OutputFormatLastnameStudent = ConfigurationManager.AppSettings["OutputFormatLastnameStudent"];
+        public static readonly string OutputFormatUsernameTeacher = (ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"]).StartsWith("{user.") && (ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"]).EndsWith("}") ? ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"] : "{user." + ConfigurationManager.AppSettings["OutputFormatUsernameTeacher"] + "}";
+        public static readonly string OutputFormatUsernameStudent = (ConfigurationManager.AppSettings["OutputFormatUsernameStudent"]).StartsWith("{user.") && (ConfigurationManager.AppSettings["OutputFormatUsernameStudent"]).EndsWith("}") ? ConfigurationManager.AppSettings["OutputFormatUsernameStudent"] : "{user." + ConfigurationManager.AppSettings["OutputFormatUsernameStudent"] + "}";
 
-        EventLogHelper eh = new EventLogHelper();
+
+        EventLogHelper eh = Program.eh;
 
         internal bool ValidateUsernameFormat()
         {
@@ -29,9 +26,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             try
             {
                 ReplaceUserProperty(OutputFormatUsernameTeacher, dummyUser);
-                //ReplaceUserProperty(OutputFormatFirstnameTeacher, dummyUser);
-                //ReplaceUserProperty(OutputFormatLastnameTeacher, dummyUser);
-
             }
             catch (Exception ex)
             {
@@ -42,8 +36,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             try
             {
                 ReplaceUserProperty(OutputFormatUsernameStudent, dummyUser);
-                //ReplaceUserProperty(OutputFormatFirstnameStudent, dummyUser);
-                //ReplaceUserProperty(OutputFormatLastnameStudent, dummyUser);
             }
             catch (Exception ex)
             {

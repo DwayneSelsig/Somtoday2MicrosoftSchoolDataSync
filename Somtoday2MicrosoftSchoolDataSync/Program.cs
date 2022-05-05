@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -24,8 +26,10 @@ namespace Somtoday2MicrosoftSchoolDataSync
         static readonly int StartYear = DateTime.Now.Month < 8 ? (DateTime.Now.Year - 1) : DateTime.Now.Year;
         static readonly int EndYear = DateTime.Now.Month < 8 ? (DateTime.Now.Year) : (DateTime.Now.Year + 1);
         static readonly string umServiceSchooljaar = StartYear + "/" + EndYear;
+        static readonly bool enableGuardianSync = bool.Parse(ConfigurationManager.AppSettings["EnableGuardianSync"]);
 
-        static EventLogHelper eh = new EventLogHelper();
+        public static EventLogHelper eh = new EventLogHelper();
+        public static ServiceHelper sh = new ServiceHelper(umServiceBrinNr, umServiceUsername, umServicePassword, umServiceSchooljaar);
 
         #region sluiten van app door user
         [DllImport("Kernel32")]
@@ -59,6 +63,8 @@ namespace Somtoday2MicrosoftSchoolDataSync
         #endregion
         static void Main(string[] args)
         {
+            DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
+
             eh.CheckEventLog();
             //sluiten van app door user
             _handler += new EventHandler(Handler);
@@ -71,69 +77,87 @@ namespace Somtoday2MicrosoftSchoolDataSync
             SettingsHelper sh = new SettingsHelper();
             if (sh.ValidateUsernameFormat())
             {
+                eh.WriteLog("Sync gestart met applicatieversie: " + buildDate.ToString("o").Split('T')[0], EventLogEntryType.Information, 100);
+
                 StartProgram();
+
+                Console.WriteLine("======================================");
+                eh.WriteLog("Sync voltooid", EventLogEntryType.Information, 100);
+                Thread.Sleep(10000);
             }
         }
         private static void StartProgram()
         {
-            eh.WriteLog("Sync gestart", EventLogEntryType.Information, 100);
-            ServiceHelper sh = new ServiceHelper(umServiceBrinNr, umServiceUsername, umServicePassword, umServiceSchooljaar);
 
             List<UmService.wisVestiging> vestigingenList = sh.GetVestigingen(booleanFilterBylocation, includedLocationCode);
-            if (vestigingenList.Count > 0)
+            if (vestigingenList?.Count == 0)
             {
-                List<VestigingLesgroepModel> vestigingLesgroepen = sh.GetLesgroepVestiging(vestigingenList);
-                if (vestigingLesgroepen.Count > 0)
+                eh.WriteLog("Geen vestigingen kunnen downloaden", EventLogEntryType.Warning, 100);
+                return;
+            }
+
+            List<VestigingLesgroepModel> vestigingLesgroepen = sh.GetLesgroepVestiging(vestigingenList);
+            if (vestigingLesgroepen?.Count == 0)
+            {
+                eh.WriteLog("Geen lesgroepen kunnen downloaden", EventLogEntryType.Warning, 100);
+                return;
+            }
+
+            List<UserLesgroepModel> leerlingLesgroepen = sh.GetStudentInfo(vestigingLesgroepen);
+            if (leerlingLesgroepen?.Count == 0)
+            {
+                eh.WriteLog("Geen leerlinginformatie kunnen downloaden", EventLogEntryType.Warning, 100);
+                return;
+            }
+
+            List<UserLesgroepModel> docentLesgroepen = sh.GetTeacherInfo(vestigingLesgroepen);
+            if (docentLesgroepen?.Count == 0)
+            {
+                eh.WriteLog("Geen docentinformatie kunnen downloaden", EventLogEntryType.Warning, 100);
+                return;
+            }
+
+            List<UserLesgroepModel> ouderInformatie = GetOuderInformatie(vestigingLesgroepen);
+            if (ouderInformatie?.Count == 0 && enableGuardianSync)
+            {
+                eh.WriteLog("Geen ouderinformatie kunnen downloaden", EventLogEntryType.Warning, 100);
+                return;
+            }
+
+            SaveToCSV(vestigingLesgroepen, leerlingLesgroepen, docentLesgroepen, ouderInformatie);
+        }
+
+        private static List<UserLesgroepModel> GetOuderInformatie(List<VestigingLesgroepModel> vestigingLesgroepen)
+        {
+            if (!enableGuardianSync)
+            {
+                return new List<UserLesgroepModel>();
+            }
+            return sh.GetGuardianInfo(vestigingLesgroepen);
+        }
+
+        private static void SaveToCSV(List<VestigingLesgroepModel> vestigingLesgroepen, List<UserLesgroepModel> leerlingLesgroepen, List<UserLesgroepModel> docentLesgroepen, List<UserLesgroepModel> ouderInformatie)
+        {
+            FileHelper fh = new FileHelper();
+            if (seperateOutputDirectoryForEachLocation)
+            {
+                foreach (VestigingLesgroepModel vestigingLesgroep in vestigingLesgroepen)
                 {
-                    List<UserLesgroepModel> leerlingLesgroepen = sh.GetStudentInfo(vestigingLesgroepen);
-                    if (leerlingLesgroepen.Count > 0)
-                    {
-                        List<UserLesgroepModel> docentLesgroepen = sh.GetTeacherInfo(vestigingLesgroepen);
-                        if (docentLesgroepen.Count > 0)
-                        {
-                            FileHelper fh = new FileHelper();
-                            if (seperateOutputDirectoryForEachLocation)
-                            {
-                                foreach (VestigingLesgroepModel vestigingLesgroep in vestigingLesgroepen)
-                                {
-                                    SDScsvHelper lh = new SDScsvHelper(
-                                        vestigingLesgroepen.Where(v => v.Vestiging == vestigingLesgroep.Vestiging).ToList(),
-                                        docentLesgroepen.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList(),
-                                        leerlingLesgroepen.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList());
-                                    SDScsv schoolDataSyncCSV = lh.GetSDScsv();
-                                    fh.WriteSDStoFiles(OutputDirectory + vestigingLesgroep.Vestiging.afkorting + "\\", schoolDataSyncCSV);
-                                }
-                            }
-                            else
-                            {
-                                SDScsvHelper lh = new SDScsvHelper(vestigingLesgroepen, docentLesgroepen, leerlingLesgroepen);
-                                SDScsv schoolDataSyncCSV = lh.GetSDScsv();
-                                fh.WriteSDStoFiles(OutputDirectory, schoolDataSyncCSV);
-                            }
-                        }
-                        else
-                        {
-                            eh.WriteLog("Geen docentinformatie kunnen downloaden", EventLogEntryType.Warning, 100);
-                        }
-                    }
-                    else
-                    {
-                        eh.WriteLog("Geen leerlinginformatie kunnen downloaden", EventLogEntryType.Warning, 100);
-                    }
-                }
-                else
-                {
-                    eh.WriteLog("Geen lesgroepen gevonden", EventLogEntryType.Warning, 100);
+                    SDScsvHelper lh = new SDScsvHelper(
+                        vestigingLesgroepen.Where(v => v.Vestiging == vestigingLesgroep.Vestiging).ToList(),
+                        docentLesgroepen.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList(),
+                        leerlingLesgroepen.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList(),
+                        ouderInformatie.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList());
+                    SDScsv schoolDataSyncCSV = lh.GetSDScsv();
+                    fh.WriteSDStoFiles(OutputDirectory + vestigingLesgroep.Vestiging.afkorting + "\\", schoolDataSyncCSV);
                 }
             }
             else
             {
-                eh.WriteLog("Geen vestigingen gevonden", EventLogEntryType.Warning, 100);
+                SDScsvHelper lh = new SDScsvHelper(vestigingLesgroepen, docentLesgroepen, leerlingLesgroepen, ouderInformatie);
+                SDScsv schoolDataSyncCSV = lh.GetSDScsv();
+                fh.WriteSDStoFiles(OutputDirectory, schoolDataSyncCSV);
             }
-
-            Console.WriteLine("======================================");
-            eh.WriteLog("Sync voltooid", EventLogEntryType.Information, 100);
-            Thread.Sleep(10000);
         }
     }
 }

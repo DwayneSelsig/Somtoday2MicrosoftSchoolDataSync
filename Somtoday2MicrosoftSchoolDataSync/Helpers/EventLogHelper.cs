@@ -32,7 +32,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 
@@ -91,27 +91,35 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             bool read = task.Wait(10000);
             if (read)
             {
-                var proc = new ProcessStartInfo
-                {
-                    UseShellExecute = true,
-                    FileName = @"powershell.exe",
-                    Arguments = "-command New-EventLog -Source \"" + appLog.Source + "\" -LogName \"" + appLog.Log + "\"",
-                    Verb = "runas"
-                };
-
                 try
                 {
-                    Process powerShellCreateEntry = Process.Start(proc);
-                    powerShellCreateEntry.EnableRaisingEvents = true;
-                    powerShellCreateEntry.Exited += powerShellCreateEntry_Exited;
-                    Console.WriteLine("Eventlog wordt aangemaakt.");
+                    System.Diagnostics.EventLog.CreateEventSource(source: appLog.Source, logName: appLog.Log);
                 }
-                catch (Exception ex)
+                catch (Exception normalCreate)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(String.Format("Eventlog aanmaken mislukt! ", ex.Message));
-                    Console.ResetColor();
-                    boolLogCreating = false;
+                    //waarschijnlijk draait SDSsync niet als Admin.
+                    var proc = new ProcessStartInfo
+                    {
+                        UseShellExecute = true,
+                        FileName = @"powershell.exe",
+                        Arguments = "-command New-EventLog -Source \"" + appLog.Source + "\" -LogName \"" + appLog.Log + "\"",
+                        Verb = "runas"
+                    };
+
+                    try
+                    {
+                        Process powerShellCreateEntry = Process.Start(proc);
+                        powerShellCreateEntry.EnableRaisingEvents = true;
+                        powerShellCreateEntry.Exited += powerShellCreateEntry_Exited;
+                        Console.WriteLine("Eventlog wordt aangemaakt.");
+                    }
+                    catch (Exception powerShellCreate)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(String.Format("Eventlog aanmaken mislukt! ", powerShellCreate.Message));
+                        Console.ResetColor();
+                        boolLogCreating = false;
+                    }
                 }
                 int timeout = 0;
                 while (boolLogCreating)

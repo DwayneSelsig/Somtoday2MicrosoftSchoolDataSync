@@ -15,7 +15,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
 
         internal bool WriteSDStoFiles(string path, SDScsv sdscsv)
         {
-            EventLogHelper eh = new EventLogHelper();
+            EventLogHelper eh = Program.eh;
             if (sdscsv.Schools.Count() > 0 &&
                                    sdscsv.Sections.Count() > 0 &&
                                    sdscsv.Teachers.Count() > 0 &&
@@ -71,6 +71,22 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                     csv.Configuration.RegisterClassMap<StudentEnrollmentCSVMap>();
                     csv.WriteRecords(sdscsv.StudentEnrollments); // where values implements IEnumerable
                 }
+                if (sdscsv.User.Count() > 0 && sdscsv.Guardianrelationship.Count() > 0)
+                {
+                    using (TextWriter writer = new StreamWriter(path + @"user.csv"))
+                    {
+                        var csv = new CsvWriter(writer);
+                        csv.Configuration.RegisterClassMap<GuardianCSVMap>();
+                        csv.WriteRecords(sdscsv.User); // where values implements IEnumerable
+                    }
+                    using (TextWriter writer = new StreamWriter(path + @"guardianrelationship.csv"))
+                    {
+                        var csv = new CsvWriter(writer);
+                        csv.Configuration.RegisterClassMap<GuardianRelationshipCSVMap>();
+                        csv.WriteRecords(sdscsv.Guardianrelationship); // where values implements IEnumerable
+                    }
+                }
+
                 if (sdscsv.Schools.Count == 1)
                 {
                     eh.WriteLog(String.Format("CSV-bestanden geschreven: {0}, {1} Lesgroepen, {2} Docenten, {3} Leerlingen, {4} Docentlesgroepen, {5} Leerlinglesgroepen, naar {6}",
