@@ -1,4 +1,4 @@
-> LET OP: Somntoday gaat de UmService wordt vervangen door een OpenAPI. Hiervoor is een nieuwe koppeling ontwikkeld: https://github.com/DwayneSelsig/SomtodayOpenAPI2MicrosoftSchoolDataSync
+> LET OP: Somtoday gaat de UmService wordt vervangen door een OpenAPI. Hiervoor is een nieuwe koppeling ontwikkeld: https://github.com/DwayneSelsig/SomtodayOpenAPI2MicrosoftSchoolDataSync
 
 # Somtoday2MicrosoftSchoolDataSync
 Open source oplossing om Microsoft Teams te kunnen gebruiken met School Data Sync met gegevens uit [Somtoday](https://www.som.today/). 
