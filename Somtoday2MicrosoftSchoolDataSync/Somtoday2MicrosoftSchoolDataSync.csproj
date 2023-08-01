@@ -68,6 +68,7 @@
     <Compile Include="Models\SDScsv.cs" />
     <Compile Include="Models\UserLesgroepModel.cs" />
     <Compile Include="Models\VestigingLesgroepModel.cs" />
+    <Compile Include="Models\VestigingSDSModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

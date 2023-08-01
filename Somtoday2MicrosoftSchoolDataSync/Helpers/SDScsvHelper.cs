@@ -103,12 +103,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                                     Number = lesgroep.id.ToString(),
                                     CourseSISID = lesgroep.vak.id.ToString(),
                                     CourseName = lesgroep.vak.naam,
-                                    CourseSubject = lesgroep.vak.naam,
-                                    Periods = leerjaar,
-                                    TermSISID = DateTime.Now.Month < 8 ? (DateTime.Now.Year - 1).ToString() + DateTime.Now.Year.ToString() : DateTime.Now.Year.ToString() + (DateTime.Now.Year + 1).ToString(),
-                                    TermName = DateTime.Now.Month < 8 ? (DateTime.Now.Year - 1) + "/" + DateTime.Now.Year : DateTime.Now.Year + "/" + (DateTime.Now.Year + 1),
-                                    TermStartDate = DateTime.Now.Month < 8 ? "8/1/" + (DateTime.Now.Year - 1) : "8/1/" + DateTime.Now.Year,
-                                    TermEndDate = DateTime.Now.Month < 8 ? "7/31/" + DateTime.Now.Year : "7/31/" + (DateTime.Now.Year + 1)
                                 });
                             }
                         }
@@ -193,7 +187,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                     }
                 }
             }
-            students = students.GroupBy(o => new { o.Firstname, o.Lastname, o.Password, o.SISid, o.SISSchoolid, o.Username }).Select(o => o.FirstOrDefault()).ToList();
+            students = students.GroupBy(o => new { o.Firstname, o.Lastname, o.SISid, o.SISSchoolid, o.Username }).Select(o => o.FirstOrDefault()).ToList();
             Console.Write(". ");
             Console.WriteLine(students.Count);
             return students;

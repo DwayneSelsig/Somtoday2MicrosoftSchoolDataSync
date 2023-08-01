@@ -27,8 +27,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
         public string SISid { get; set; }
         [DisplayName("Email")]
         public string Email { get; set; }
-        [DisplayName("Role")]
-        public string Role { get; set; }
     }
     public sealed class GuardianRelationshipCSVMap : ClassMap<GuardianRelationship>
     {
@@ -37,7 +35,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
             AutoMap();
             Map(m => m.SISid).Name("SIS ID");
             Map(m => m.Email).Name("Email");
-            Map(m => m.Role).Name("Role");
         }
     }
 
@@ -110,7 +107,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
         public string Username { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Password { get; set; }
     }
     public sealed class TeacherCSVMap : ClassMap<Teacher>
     {
@@ -131,7 +127,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
         public string Username { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Password { get; set; }
     }
     public sealed class StudentCSVMap : ClassMap<Student>
     {
@@ -153,12 +148,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
         public string Number { get; set; }
         public string CourseSISID { get; set; }
         public string CourseName { get; set; }
-        public string CourseSubject { get; set; }
-        public string Periods { get; set; }
-        public string TermSISID { get; set; }
-        public string TermName { get; set; }
-        public string TermStartDate { get; set; }
-        public string TermEndDate { get; set; }
+
     }
     public sealed class SectionCSVMap : ClassMap<Section>
     {
@@ -171,12 +161,6 @@ namespace Somtoday2MicrosoftSchoolDataSync.Models
             Map(m => m.Number).Name("Section Number");
             Map(m => m.CourseSISID).Name("Course SIS ID");
             Map(m => m.CourseName).Name("Course Name");
-            Map(m => m.CourseSubject).Name("Course Subject");
-            Map(m => m.Periods).Name("Periods");
-            Map(m => m.TermSISID).Name("Term SIS ID");
-            Map(m => m.TermName).Name("Term Name");
-            Map(m => m.TermStartDate).Name("Term StartDate");
-            Map(m => m.TermEndDate).Name("Term EndDate");
         }
     }
 

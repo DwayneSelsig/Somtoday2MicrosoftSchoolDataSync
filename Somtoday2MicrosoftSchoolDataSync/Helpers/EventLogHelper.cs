@@ -30,7 +30,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
             {
                 WriteLogUnsafe(Message, eventType, eventId);
             }
-            catch (Exception ex)
+            catch 
             {
 
             }
@@ -95,7 +95,7 @@ namespace Somtoday2MicrosoftSchoolDataSync.Helpers
                 {
                     System.Diagnostics.EventLog.CreateEventSource(source: appLog.Source, logName: appLog.Log);
                 }
-                catch (Exception normalCreate)
+                catch
                 {
                     //waarschijnlijk draait SDSsync niet als Admin.
                     var proc = new ProcessStartInfo

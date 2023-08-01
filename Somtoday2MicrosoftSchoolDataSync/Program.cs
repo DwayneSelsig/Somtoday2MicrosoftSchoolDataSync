@@ -31,6 +31,13 @@ namespace Somtoday2MicrosoftSchoolDataSync
         public static EventLogHelper eh = new EventLogHelper();
         public static ServiceHelper sh = new ServiceHelper(umServiceBrinNr, umServiceUsername, umServicePassword, umServiceSchooljaar);
 
+        public static List<VestigingLesgroepModel> vestigingLesgroepen = new List<VestigingLesgroepModel>();
+        public static List<UserLesgroepModel> leerlingLesgroepen = new List<UserLesgroepModel>();
+        public static List<UserLesgroepModel> docentLesgroepen = new List<UserLesgroepModel>();
+        public static List<UserLesgroepModel> ouderInformatie = new List<UserLesgroepModel>();
+        public static List<VestigingSDSModel> vestigingSDSList = new List<VestigingSDSModel>();
+
+
         #region sluiten van app door user
         [DllImport("Kernel32")]
         private static extern bool SetConsoleCtrlHandler(EventHandler handler, bool add);
@@ -63,6 +70,7 @@ namespace Somtoday2MicrosoftSchoolDataSync
         #endregion
         static void Main(string[] args)
         {
+
             DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
 
             eh.CheckEventLog();
@@ -88,57 +96,109 @@ namespace Somtoday2MicrosoftSchoolDataSync
         }
         private static void StartProgram()
         {
+            bool succes = false;
+            for (int attempt = 0; attempt < 10; attempt++)
+            {
+                if (GetSomtodayData())
+                {
+                    attempt = 10;
+                    eh.WriteLog("Download alle gegevens is gelukt!", EventLogEntryType.Information, 100);
+                    succes = true;
+                }
+                else
+                {
+                    eh.WriteLog(string.Format("Download gegevens is mislukt. Over 5 minuten nogmaals proberen. Poging {0}", attempt), EventLogEntryType.Warning, 100);
+                    Thread.Sleep(300000);
+                }
+            }
+
+            if (succes)
+            {
+                vestigingSDSList = GetVestigingSDS();
+                SaveToDisk(vestigingSDSList);
+            }
+            else
+            {
+                vestigingSDSList = GetVestigingSDSFromDisk();
+            }
+
+            //SaveToCloud();
+
+        }
+
+        private static List<VestigingSDSModel> GetVestigingSDSFromDisk()
+        {
+            FileHelper fh = new FileHelper();
+
+            vestigingSDSList = fh.GetVestigingSDSModels(OutputDirectory);
+            return null;
+        }
+
+        private static bool GetSomtodayData()
+        {
+            bool success = true;
 
             List<UmService.wisVestiging> vestigingenList = sh.GetVestigingen(booleanFilterBylocation, includedLocationCode);
             if (vestigingenList?.Count == 0)
             {
                 eh.WriteLog("Geen vestigingen kunnen downloaden", EventLogEntryType.Warning, 100);
-                return;
+                return false;
             }
 
-            List<VestigingLesgroepModel> vestigingLesgroepen = sh.GetLesgroepVestiging(vestigingenList);
+            vestigingLesgroepen = new List<VestigingLesgroepModel>();
+            vestigingLesgroepen = sh.GetLesgroepVestiging(vestigingenList);
             if (vestigingLesgroepen?.Count == 0)
             {
                 eh.WriteLog("Geen lesgroepen kunnen downloaden", EventLogEntryType.Warning, 100);
-                return;
+                return false;
             }
 
-            List<UserLesgroepModel> leerlingLesgroepen = sh.GetStudentInfo(vestigingLesgroepen);
+            leerlingLesgroepen = new List<UserLesgroepModel>();
+            leerlingLesgroepen = sh.GetStudentInfo(vestigingLesgroepen);
             if (leerlingLesgroepen?.Count == 0)
             {
                 eh.WriteLog("Geen leerlinginformatie kunnen downloaden", EventLogEntryType.Warning, 100);
-                return;
+                return false;
             }
 
-            List<UserLesgroepModel> docentLesgroepen = sh.GetTeacherInfo(vestigingLesgroepen);
+            docentLesgroepen = new List<UserLesgroepModel>();
+            docentLesgroepen = sh.GetTeacherInfo(vestigingLesgroepen);
             if (docentLesgroepen?.Count == 0)
             {
                 eh.WriteLog("Geen docentinformatie kunnen downloaden", EventLogEntryType.Warning, 100);
-                return;
+                return false;
             }
 
-            List<UserLesgroepModel> ouderInformatie = GetOuderInformatie(vestigingLesgroepen);
+            ouderInformatie = new List<UserLesgroepModel>();
+            ouderInformatie = GetOuderInformatie(vestigingLesgroepen);
             if (ouderInformatie?.Count == 0 && enableGuardianSync)
             {
                 eh.WriteLog("Geen ouderinformatie kunnen downloaden", EventLogEntryType.Warning, 100);
-                return;
+                return false;
             }
-
-            SaveToCSV(vestigingLesgroepen, leerlingLesgroepen, docentLesgroepen, ouderInformatie);
+            return success;
         }
 
-        private static List<UserLesgroepModel> GetOuderInformatie(List<VestigingLesgroepModel> vestigingLesgroepen)
-        {
-            if (!enableGuardianSync)
-            {
-                return new List<UserLesgroepModel>();
-            }
-            return sh.GetGuardianInfo(vestigingLesgroepen);
-        }
-
-        private static void SaveToCSV(List<VestigingLesgroepModel> vestigingLesgroepen, List<UserLesgroepModel> leerlingLesgroepen, List<UserLesgroepModel> docentLesgroepen, List<UserLesgroepModel> ouderInformatie)
+        private static void SaveToDisk(List<VestigingSDSModel> vestigingSDSList)
         {
             FileHelper fh = new FileHelper();
+            if (vestigingSDSList.Count == 1)
+            {
+                fh.WriteSDStoFiles(OutputDirectory, vestigingSDSList[0].SDS);
+            }
+            else
+            {
+                foreach (var vestigingSDS in vestigingSDSList)
+                {
+                    fh.WriteSDStoFiles(OutputDirectory + vestigingSDS.Vestigingsafkorting + "\\", vestigingSDS.SDS);
+                }
+            }
+        }
+
+        private static List<VestigingSDSModel> GetVestigingSDS()
+        {
+            List<VestigingSDSModel> vSDS = new List<VestigingSDSModel>();
+
             if (seperateOutputDirectoryForEachLocation)
             {
                 foreach (VestigingLesgroepModel vestigingLesgroep in vestigingLesgroepen)
@@ -148,16 +208,35 @@ namespace Somtoday2MicrosoftSchoolDataSync
                         docentLesgroepen.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList(),
                         leerlingLesgroepen.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList(),
                         ouderInformatie.Where(v => v.VestigingLesgroep.Vestiging == vestigingLesgroep.Vestiging).ToList());
-                    SDScsv schoolDataSyncCSV = lh.GetSDScsv();
-                    fh.WriteSDStoFiles(OutputDirectory + vestigingLesgroep.Vestiging.afkorting + "\\", schoolDataSyncCSV);
+
+                    vSDS.Add(new VestigingSDSModel
+                    {
+                        Vestigingsafkorting = vestigingLesgroep.Vestiging.afkorting,
+                        SDS = lh.GetSDScsv()
+                    });
+
                 }
             }
             else
             {
                 SDScsvHelper lh = new SDScsvHelper(vestigingLesgroepen, docentLesgroepen, leerlingLesgroepen, ouderInformatie);
                 SDScsv schoolDataSyncCSV = lh.GetSDScsv();
-                fh.WriteSDStoFiles(OutputDirectory, schoolDataSyncCSV);
+                vSDS.Add(new VestigingSDSModel
+                {
+                    Vestigingsafkorting = null,
+                    SDS = lh.GetSDScsv()
+                });
             }
+            return vSDS;
+        }
+
+        private static List<UserLesgroepModel> GetOuderInformatie(List<VestigingLesgroepModel> vestigingLesgroepen)
+        {
+            if (!enableGuardianSync)
+            {
+                return new List<UserLesgroepModel>();
+            }
+            return sh.GetGuardianInfo(vestigingLesgroepen);
         }
     }
 }
