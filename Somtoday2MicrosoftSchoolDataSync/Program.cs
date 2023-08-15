@@ -182,7 +182,11 @@ namespace Somtoday2MicrosoftSchoolDataSync
         private static void SaveToDisk(List<VestigingSDSModel> vestigingSDSList)
         {
             FileHelper fh = new FileHelper();
-            if (vestigingSDSList.Count == 1)
+            if (vestigingSDSList.Count == 1 && seperateOutputDirectoryForEachLocation)
+            {
+                fh.WriteSDStoFiles(OutputDirectory + vestigingSDSList[0].Vestigingsafkorting + "\\", vestigingSDSList[0].SDS);
+            }
+            else if (vestigingSDSList.Count == 1 && !seperateOutputDirectoryForEachLocation)
             {
                 fh.WriteSDStoFiles(OutputDirectory, vestigingSDSList[0].SDS);
             }
